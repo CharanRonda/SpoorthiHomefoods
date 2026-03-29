@@ -1,0 +1,2444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spoorthi Home Foods | Homemade Taste, Modern Shopping</title>
+<style>
+:root{
+  --bg:#f4ede3;
+  --card:rgba(255,255,255,0.18);
+  --surface:rgba(255,255,255,0.18);
+  --surface-strong:rgba(255,255,255,0.28);
+  --ink:#2f1c10;
+  --muted:#6d5748;
+  --line:rgba(73,42,24,0.12);
+  --brand:#9c3d20;
+  --brand-deep:#6d2110;
+  --accent:#edb54a;
+  --accent-soft:#fff1cf;
+  --success:#24754a;
+  --warning:#d9822b;
+  --glass-border:rgba(255,255,255,0.42);
+  --glass-stroke:rgba(120,80,54,0.14);
+  --shadow:0 24px 60px rgba(70,37,19,0.12);
+  --shadow-soft:0 16px 40px rgba(70,37,19,0.1);
+  --radius-xl:28px;
+  --radius-lg:22px;
+  --radius-md:16px;
+  --radius-sm:12px;
+  --max-width:1180px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+#home,
+#shop,
+#story,
+#reviews,
+#contact{
+  scroll-margin-top:96px;
+}
+
+body{
+  margin:0;
+  font-family:"Trebuchet MS","Segoe UI",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.95), transparent 32%),
+    radial-gradient(circle at top right, rgba(237,181,74,0.22), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(156,61,32,0.14), transparent 30%),
+    linear-gradient(145deg, #efe3d5 0%, #f8f3ec 42%, #eadacc 100%);
+}
+
+body.cart-open{
+  overflow:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+img{
+  display:block;
+  width:100%;
+}
+
+.site-shell{
+  position:relative;
+  overflow:hidden;
+}
+
+.site-shell::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(255,255,255,0.45), transparent 24%),
+    radial-gradient(circle at 82% 18%, rgba(237,181,74,0.16), transparent 22%),
+    radial-gradient(circle at 78% 82%, rgba(156,61,32,0.12), transparent 24%);
+}
+
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:30;
+  backdrop-filter:blur(24px);
+  background:rgba(255,255,255,0.18);
+  border-bottom:1px solid var(--glass-border);
+  box-shadow:0 10px 30px rgba(95,59,36,0.08);
+}
+
+.nav{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.brand{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.brand strong{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.35rem;
+  letter-spacing:0.02em;
+}
+
+.brand span{
+  color:var(--muted);
+  font-size:0.88rem;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  color:var(--muted);
+  font-weight:600;
+}
+
+.nav-links a:hover{
+  color:var(--brand);
+}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:999px;
+  border:1px solid var(--glass-border);
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(20px);
+  color:var(--brand);
+  font-weight:700;
+}
+
+.cart-toggle{
+  border:none;
+  cursor:pointer;
+  box-shadow:var(--shadow-soft);
+}
+
+.hero{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:48px 20px 24px;
+}
+
+.hero-copy{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(145deg, rgba(255,255,255,0.26), rgba(255,255,255,0.12));
+  backdrop-filter:blur(32px);
+  -webkit-backdrop-filter:blur(32px);
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow);
+  padding:42px;
+  min-height:420px;
+  display:flex;
+  align-items:center;
+}
+
+.hero-copy::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.42), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(237,181,74,0.16), transparent 34%);
+}
+
+.hero-copy > *{
+  position:relative;
+  z-index:1;
+}
+
+.hero-brand{
+  width:100%;
+  display:grid;
+  grid-template-columns:minmax(220px, 320px) minmax(0, 1fr);
+  gap:34px;
+  align-items:center;
+}
+
+.hero-logo{
+  display:flex;
+  justify-content:center;
+}
+
+.hero-logo img{
+  width:min(100%, 300px);
+  aspect-ratio:1 / 1;
+  object-fit:cover;
+  border-radius:32px;
+  box-shadow:0 20px 45px rgba(60,36,23,0.12);
+  border:1px solid rgba(255,255,255,0.42);
+}
+
+.hero-text{
+  text-align:left;
+}
+
+.hero-copy h1{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(3rem,6vw,5.5rem);
+  line-height:1;
+}
+
+.hero-tagline{
+  margin:18px 0 0;
+  font-size:clamp(1.15rem,2.5vw,1.6rem);
+  line-height:1.6;
+  color:rgba(85,61,48,0.9);
+  font-weight:600;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+}
+
+.button{
+  border:none;
+  border-radius:999px;
+  padding:14px 22px;
+  cursor:pointer;
+  font-weight:800;
+  transition:transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.button:hover{
+  transform:translateY(-1px);
+}
+
+.button-primary{
+  background:linear-gradient(135deg, var(--brand), var(--brand-deep));
+  color:#fff;
+  box-shadow:0 18px 35px rgba(109,33,16,0.24);
+}
+
+.button-secondary{
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(18px);
+  color:var(--ink);
+  border:1px solid var(--glass-border);
+}
+
+.section-wrap{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:20px;
+}
+
+.featured-showcase{
+  padding-top:0;
+}
+
+.featured-showcase-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:18px;
+  margin-bottom:18px;
+}
+
+.featured-showcase-head h2{
+  margin:0;
+  font-size:2rem;
+  font-family:Georgia,"Times New Roman",serif;
+}
+
+.featured-showcase-head p{
+  margin:8px 0 0;
+  color:var(--muted);
+  max-width:620px;
+  line-height:1.7;
+}
+
+.featured-badge{
+  min-width:132px;
+  padding:14px 16px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.22);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  box-shadow:var(--shadow-soft);
+  text-align:left;
+}
+
+.featured-badge span{
+  display:block;
+  color:var(--muted);
+  font-size:0.86rem;
+}
+
+.featured-badge strong{
+  display:block;
+  margin-top:4px;
+  font-size:2rem;
+  line-height:1;
+}
+
+.featured-slider{
+  position:relative;
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;
+  gap:14px;
+}
+
+.featured-arrow{
+  width:52px;
+  height:52px;
+  border:none;
+  border-radius:18px;
+  background:rgba(255,255,255,0.22);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--glass-border);
+  color:var(--ink);
+  font-size:1.4rem;
+  cursor:pointer;
+  box-shadow:var(--shadow-soft);
+}
+
+.featured-viewport{
+  overflow:hidden;
+}
+
+.featured-track{
+  display:flex;
+  transition:transform 0.45s ease;
+  will-change:transform;
+}
+
+.featured-slide{
+  min-width:100%;
+}
+
+.featured-card{
+  display:grid;
+  grid-template-columns:minmax(220px, 300px) minmax(0,1fr);
+  gap:22px;
+  align-items:center;
+  padding:22px;
+  border-radius:28px;
+  background:rgba(255,255,255,0.22);
+  backdrop-filter:blur(28px);
+  border:1px solid var(--glass-border);
+  box-shadow:var(--shadow-soft);
+}
+
+.featured-card-media{
+  position:relative;
+  min-height:250px;
+  overflow:hidden;
+  border-radius:24px;
+  background:linear-gradient(135deg, rgba(255,255,255,0.28), rgba(237,181,74,0.18));
+}
+
+.featured-card-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.featured-card-badge{
+  position:absolute;
+  top:16px;
+  left:16px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.24);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.32);
+  color:var(--brand-deep);
+  font-size:0.82rem;
+  font-weight:800;
+}
+
+.featured-card-body{
+  display:grid;
+  gap:16px;
+}
+
+.featured-card-top{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-start;
+}
+
+.featured-card-title{
+  margin:0 0 8px;
+  font-size:2rem;
+  font-family:Georgia,"Times New Roman",serif;
+}
+
+.featured-card-category{
+  color:var(--brand);
+  font-size:0.82rem;
+  font-weight:800;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+
+.featured-card-desc{
+  margin:0;
+  color:var(--muted);
+  line-height:1.7;
+  font-size:1.02rem;
+}
+
+.featured-card-price{
+  min-width:110px;
+  text-align:right;
+}
+
+.featured-card-price strong{
+  display:block;
+  font-size:1.9rem;
+  line-height:1;
+}
+
+.featured-card-price span{
+  display:block;
+  margin-top:8px;
+  color:var(--success);
+  font-size:0.92rem;
+  font-weight:800;
+}
+
+.featured-card-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+}
+
+.featured-add{
+  border:none;
+  border-radius:999px;
+  padding:14px 22px;
+  background:linear-gradient(135deg, var(--brand), var(--brand-deep));
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.featured-note{
+  color:var(--muted);
+  font-size:0.94rem;
+}
+
+.featured-dots{
+  margin-top:16px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+}
+
+.featured-dot{
+  width:12px;
+  height:12px;
+  border:none;
+  border-radius:999px;
+  background:rgba(255,255,255,0.26);
+  border:1px solid rgba(255,255,255,0.36);
+  cursor:pointer;
+}
+
+.featured-dot.active{
+  width:34px;
+  background:rgba(156,61,32,0.92);
+  border-color:transparent;
+}
+
+.shop-shell{
+  padding-top:18px;
+}
+
+.section-heading{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-end;
+  margin-bottom:20px;
+}
+
+.section-heading h2{
+  margin:0;
+  font-size:2rem;
+  font-family:Georgia,"Times New Roman",serif;
+}
+
+.section-heading p{
+  margin:8px 0 0;
+  color:var(--muted);
+  max-width:620px;
+  line-height:1.7;
+}
+
+.controls-panel{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:16px;
+  padding:20px;
+  background:var(--surface);
+  backdrop-filter:blur(28px);
+  -webkit-backdrop-filter:blur(28px);
+  border-radius:26px;
+  box-shadow:var(--shadow-soft);
+  border:1px solid var(--glass-border);
+}
+
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:rgba(255,255,255,0.18);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  border-radius:18px;
+  padding:0 14px;
+}
+
+.search-box input{
+  width:100%;
+  min-height:52px;
+  border:none;
+  outline:none;
+  background:transparent;
+}
+
+.controls-group{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+}
+
+.category-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.category-pill{
+  border:none;
+  border-radius:999px;
+  padding:10px 16px;
+  background:rgba(255,255,255,0.18);
+  backdrop-filter:blur(18px);
+  color:var(--muted);
+  cursor:pointer;
+  border:1px solid var(--glass-border);
+  font-weight:700;
+}
+
+.category-pill.active{
+  background:rgba(156,61,32,0.88);
+  color:#fff;
+  border-color:transparent;
+}
+
+.sort-select{
+  min-height:52px;
+  padding:0 18px;
+  border-radius:18px;
+  border:1px solid var(--glass-border);
+  background:rgba(255,255,255,0.18);
+  backdrop-filter:blur(18px);
+  color:var(--ink);
+}
+
+.products-grid{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;
+}
+
+.product-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  background:var(--surface);
+  backdrop-filter:blur(28px);
+  -webkit-backdrop-filter:blur(28px);
+  border-radius:26px;
+  overflow:hidden;
+  box-shadow:var(--shadow-soft);
+  border:1px solid var(--glass-border);
+}
+
+.product-media{
+  position:relative;
+  height:250px;
+  overflow:hidden;
+  border-bottom:1px solid rgba(255,255,255,0.28);
+  background:linear-gradient(135deg, rgba(255,255,255,0.26), rgba(237,181,74,0.14));
+}
+
+.product-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transition:transform 0.4s ease;
+}
+
+.product-card:hover .product-media img{
+  transform:scale(1.05);
+}
+
+.product-badge{
+  position:absolute;
+  top:16px;
+  left:16px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.26);
+  backdrop-filter:blur(18px);
+  color:var(--brand-deep);
+  font-size:0.82rem;
+  font-weight:800;
+}
+
+.product-body{
+  display:flex;
+  flex:1;
+  flex-direction:column;
+  gap:16px;
+  padding:20px;
+}
+
+.product-top{
+  display:grid;
+  gap:12px;
+}
+
+.product-title{
+  margin:0 0 8px;
+  font-size:1.25rem;
+}
+
+.product-category{
+  color:var(--brand);
+  font-size:0.82rem;
+  font-weight:800;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+}
+
+.product-desc{
+  margin:0;
+  color:var(--muted);
+  line-height:1.65;
+  font-size:0.95rem;
+}
+
+.size-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.size-chip{
+  flex:1 1 96px;
+  border-radius:16px;
+  border:1px solid var(--glass-border);
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(18px);
+  padding:12px;
+  cursor:pointer;
+  text-align:left;
+  min-width:92px;
+}
+
+.size-chip.active{
+  border-color:var(--brand);
+  background:rgba(255,243,239,0.45);
+  box-shadow:inset 0 0 0 1px rgba(156,61,32,0.12);
+}
+
+.size-chip strong{
+  display:block;
+  margin-bottom:4px;
+}
+
+.size-chip span{
+  color:var(--muted);
+  font-size:0.84rem;
+}
+
+.product-footer{
+  margin-top:auto;
+  display:grid;
+  gap:14px;
+}
+
+.price-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-end;
+}
+
+.price-row strong{
+  font-size:1.5rem;
+}
+
+.price-row span{
+  color:var(--muted);
+  font-size:0.92rem;
+}
+
+.cart-actions{
+  display:flex;
+  gap:12px;
+}
+
+.qty-control{
+  display:inline-flex;
+  align-items:center;
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(18px);
+  border-radius:999px;
+  border:1px solid var(--glass-border);
+  overflow:hidden;
+}
+
+.qty-control button{
+  width:40px;
+  height:44px;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  font-size:1.2rem;
+  color:var(--brand-deep);
+}
+
+.qty-control span{
+  min-width:34px;
+  text-align:center;
+  font-weight:800;
+}
+
+.add-button{
+  flex:1;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(135deg, var(--brand), var(--brand-deep));
+  color:#fff;
+  cursor:pointer;
+  font-weight:800;
+}
+
+.empty-state{
+  padding:30px;
+  background:var(--surface);
+  backdrop-filter:blur(24px);
+  border-radius:24px;
+  text-align:center;
+  color:var(--muted);
+  border:1px solid var(--glass-border);
+}
+
+.story-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+
+.story-card{
+  padding:26px;
+  border-radius:26px;
+  background:var(--surface);
+  backdrop-filter:blur(26px);
+  box-shadow:var(--shadow-soft);
+  border:1px solid var(--glass-border);
+}
+
+.story-card h3{
+  margin:0 0 10px;
+  font-size:1.18rem;
+}
+
+.story-card p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.testimonial-shell{
+  display:grid;
+  grid-template-columns:1.05fr 0.95fr;
+  gap:20px;
+}
+
+.testimonial-card,
+.cta-panel{
+  background:var(--surface);
+  backdrop-filter:blur(28px);
+  border-radius:28px;
+  border:1px solid var(--glass-border);
+  box-shadow:var(--shadow-soft);
+}
+
+.testimonial-card{
+  padding:32px;
+}
+
+.testimonial-card h3,
+.cta-panel h3{
+  margin:0 0 12px;
+  font-size:1.5rem;
+}
+
+.testimonial-card blockquote{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.35rem;
+  line-height:1.55;
+}
+
+.testimonial-card footer{
+  margin-top:20px;
+  color:var(--muted);
+}
+
+.review-grid{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+
+.review-pill{
+  padding:16px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--glass-border);
+}
+
+.review-pill strong{
+  display:block;
+  margin-bottom:6px;
+}
+
+.review-pill span{
+  color:var(--muted);
+  font-size:0.92rem;
+  line-height:1.55;
+}
+
+.cta-panel{
+  padding:32px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.cta-list{
+  display:grid;
+  gap:12px;
+}
+
+.cta-item{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:16px 18px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--glass-border);
+}
+
+.cta-item strong{
+  display:block;
+}
+
+.cta-item span{
+  color:var(--muted);
+  font-size:0.92rem;
+}
+
+.site-footer{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:0 20px 42px;
+}
+
+.footer-shell{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:center;
+  padding:22px 26px;
+  border-radius:24px;
+  background:rgba(89,53,33,0.28);
+  backdrop-filter:blur(24px);
+  color:#3c2417;
+  border:1px solid var(--glass-border);
+}
+
+.footer-shell p{
+  margin:6px 0 0;
+  color:rgba(60,36,23,0.72);
+}
+
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.footer-links a{
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(16px);
+}
+
+.cart-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(35,20,11,0.45);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 0.25s ease, visibility 0.25s ease;
+  z-index:38;
+}
+
+.cart-backdrop.visible{
+  opacity:1;
+  visibility:visible;
+}
+
+.cart-drawer{
+  position:fixed;
+  top:0;
+  right:0;
+  width:min(420px,100%);
+  height:100vh;
+  padding:24px;
+  background:rgba(255,255,255,0.22);
+  backdrop-filter:blur(14px);
+  transform:translateX(100%);
+  transition:transform 0.28s ease;
+  z-index:39;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  box-shadow:-24px 0 60px rgba(35,20,11,0.18);
+}
+
+.cart-drawer.open{
+  transform:translateX(0);
+}
+
+.cart-header{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  align-items:flex-start;
+}
+
+.cart-header h2{
+  margin:0;
+  font-size:1.5rem;
+}
+
+.cart-header p{
+  margin:8px 0 0;
+  color:var(--muted);
+}
+
+.icon-button{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:14px;
+  background:rgba(255,255,255,0.22);
+  backdrop-filter:blur(18px);
+  cursor:pointer;
+  box-shadow:var(--shadow-soft);
+}
+
+.cart-items{
+  flex:1;
+  overflow:auto;
+  display:grid;
+  align-content:start;
+  gap:12px;
+}
+
+.cart-item{
+  padding:14px;
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(18px);
+  border-radius:20px;
+  border:1px solid var(--glass-border);
+}
+
+.cart-item h3{
+  margin:0 0 4px;
+  font-size:1rem;
+}
+
+.cart-item p{
+  margin:0;
+  color:var(--muted);
+  font-size:0.92rem;
+}
+
+.cart-item-meta{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  margin-top:12px;
+}
+
+.cart-mini-controls{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+
+.mini-button{
+  width:28px;
+  height:28px;
+  border:none;
+  border-radius:10px;
+  background:rgba(255,255,255,0.22);
+  backdrop-filter:blur(16px);
+  color:var(--brand-deep);
+  cursor:pointer;
+  font-weight:800;
+}
+
+.link-button{
+  border:none;
+  background:none;
+  padding:0;
+  color:var(--brand);
+  cursor:pointer;
+  font-weight:700;
+}
+
+.cart-summary{
+  display:grid;
+  gap:10px;
+  padding:18px;
+  border-radius:22px;
+  background:rgba(255,255,255,0.22);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--glass-border);
+}
+
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  color:var(--muted);
+}
+
+.summary-row.total{
+  padding-top:10px;
+  margin-top:4px;
+  border-top:1px solid rgba(73,42,24,0.08);
+  color:var(--ink);
+  font-size:1.08rem;
+  font-weight:800;
+}
+
+.cart-footer{
+  display:grid;
+  gap:10px;
+}
+
+.checkout-button{
+  width:100%;
+  border:none;
+  border-radius:18px;
+  padding:15px 18px;
+  background:linear-gradient(135deg, var(--success), #1e5e3b);
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.checkout-button:disabled{
+  opacity:0.55;
+  cursor:not-allowed;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:26px;
+  transform:translate(-50%, 120px);
+  padding:14px 18px;
+  border-radius:999px;
+  background:rgba(61,37,24,0.58);
+  backdrop-filter:blur(18px);
+  color:#fff;
+  font-weight:700;
+  box-shadow:var(--shadow);
+  transition:transform 0.25s ease;
+  z-index:60;
+}
+
+.toast.visible{
+  transform:translate(-50%, 0);
+}
+
+.mobile-dock{
+  display:none;
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.revealed{
+  opacity:1;
+  transform:translateY(0);
+}
+
+@media (max-width:1080px){
+  .testimonial-shell{
+    grid-template-columns:1fr;
+  }
+
+  .story-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .featured-card{
+    grid-template-columns:1fr;
+  }
+
+  .products-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width:780px){
+  .nav{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+    justify-items:stretch;
+  }
+
+  .brand{
+    width:100%;
+    align-items:center;
+    text-align:center;
+  }
+
+  .nav-actions{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+
+  .nav-actions .pill{
+    width:100%;
+    min-height:48px;
+    justify-content:center;
+  }
+
+  .nav-links{
+    width:100%;
+    justify-content:center;
+    flex-wrap:wrap;
+    overflow:visible;
+    padding-bottom:0;
+    gap:10px;
+  }
+
+  .nav-links::-webkit-scrollbar{
+    display:none;
+  }
+
+  .nav-links a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:42px;
+    padding:8px 12px;
+    border-radius:14px;
+    background:rgba(255,255,255,0.16);
+    border:1px solid rgba(255,255,255,0.28);
+    text-align:center;
+  }
+
+  .hero-copy{
+    padding:30px 24px;
+  }
+
+  .hero-brand{
+    grid-template-columns:1fr;
+    gap:22px;
+    justify-items:center;
+  }
+
+  .hero-logo{
+    justify-content:center;
+  }
+
+  .hero-text{
+    text-align:center;
+  }
+
+  .featured-showcase-head,
+  .featured-card-top{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .story-grid,
+  .review-grid,
+  .products-grid{
+    grid-template-columns:1fr;
+  }
+
+  .controls-panel,
+  .section-heading,
+  .footer-shell{
+    grid-template-columns:1fr;
+    display:grid;
+  }
+
+  .controls-group{
+    justify-content:flex-start;
+    width:100%;
+  }
+
+  .sort-select{
+    width:100%;
+  }
+
+  .product-body{
+    padding:18px;
+  }
+
+  .size-row{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+
+  .size-chip{
+    min-width:0;
+  }
+
+  .price-row{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .cart-actions{
+    flex-direction:column;
+  }
+
+  .qty-control{
+    width:100%;
+    justify-content:space-between;
+  }
+
+  .qty-control button{
+    width:52px;
+    height:48px;
+  }
+
+  .add-button{
+    min-height:52px;
+  }
+
+  .cta-item{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .featured-slider{
+    grid-template-columns:1fr;
+  }
+
+  .featured-arrow{
+    display:none;
+  }
+
+  .featured-card{
+    padding:18px;
+  }
+
+  .featured-card-media{
+    min-height:220px;
+  }
+
+  .featured-card-price{
+    text-align:left;
+  }
+
+  .mobile-dock{
+    position:fixed;
+    left:12px;
+    right:12px;
+    bottom:calc(12px + env(safe-area-inset-bottom));
+    z-index:35;
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:10px;
+    padding:10px;
+    border-radius:22px;
+    background:rgba(255,255,255,0.28);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+    border:1px solid var(--glass-border);
+    box-shadow:0 18px 40px rgba(70,37,19,0.14);
+  }
+
+  .mobile-dock a,
+  .mobile-dock button{
+    min-height:54px;
+    border:none;
+    border-radius:16px;
+    background:rgba(255,255,255,0.24);
+    color:var(--ink);
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:10px 8px;
+    cursor:pointer;
+    backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,0.36);
+  }
+
+  .mobile-dock .mobile-checkout{
+    background:linear-gradient(135deg, var(--brand), var(--brand-deep));
+    color:#fff;
+    border-color:transparent;
+  }
+
+  .toast{
+    bottom:calc(92px + env(safe-area-inset-bottom));
+  }
+
+  body{
+    padding-bottom:96px;
+  }
+}
+
+@media (max-width:560px){
+  .section-wrap,
+  .site-footer{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .nav{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .hero{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .hero-copy h1{
+    font-size:2.3rem;
+    line-height:0.95;
+  }
+
+  .hero-logo img{
+    width:min(100%, 200px);
+    border-radius:24px;
+  }
+
+  .hero-copy{
+    min-height:auto;
+    padding:22px 16px;
+  }
+
+  .hero-brand{
+    gap:14px;
+  }
+
+  .hero-tagline{
+    margin-top:8px;
+    font-size:1.05rem;
+  }
+
+  .section-heading h2{
+    font-size:1.7rem;
+  }
+
+  .featured-showcase-head h2{
+    font-size:1.7rem;
+  }
+
+  .controls-panel{
+    padding:16px;
+  }
+
+  .search-box{
+    min-height:52px;
+  }
+
+  .size-row{
+    grid-template-columns:1fr;
+  }
+
+  .product-card{
+    border-radius:22px;
+  }
+
+  .product-media{
+    height:220px;
+  }
+
+  .featured-card-title{
+    font-size:1.6rem;
+  }
+
+  .featured-badge{
+    width:100%;
+  }
+
+  .featured-add{
+    width:100%;
+  }
+
+  .hero-actions{
+    width:100%;
+  }
+
+  .hero-actions > *{
+    flex:1 1 100%;
+    justify-content:center;
+    text-align:center;
+  }
+
+  input,
+  select{
+    font-size:16px;
+  }
+
+  .cart-drawer{
+    padding:18px 16px;
+  }
+
+  .mobile-dock{
+    left:10px;
+    right:10px;
+    bottom:calc(10px + env(safe-area-inset-bottom));
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:8px;
+    padding:8px;
+    border-radius:18px;
+  }
+
+  .mobile-dock a,
+  .mobile-dock button{
+    min-height:46px;
+    border-radius:14px;
+    padding:8px 6px;
+    font-size:0.82rem;
+  }
+
+  .toast{
+    bottom:calc(78px + env(safe-area-inset-bottom));
+  }
+
+  body{
+    padding-bottom:82px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="site-shell">
+  <header class="site-header">
+    <div class="nav">
+      <a class="brand" href="#home" aria-label="Spoorthi Home Foods home">
+        <strong>Spoorthi Home Foods</strong>
+        <span>Freshly packed homemade staples</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#shop">Shop</a>
+        <a href="#story">Our Promise</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="pill" href="checkout.html">Checkout</a>
+        <button class="pill cart-toggle" id="cartToggle" type="button">
+          Cart <span id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero reveal" id="home">
+      <div class="hero-copy">
+        <div class="hero-brand">
+          <div class="hero-logo">
+            <img src="brand-display.jpeg" alt="Spoorthi Home Foods logo">
+          </div>
+          <div class="hero-text">
+            <h1>Spoorthi Home Foods</h1>
+            <p class="hero-tagline">Freshly packed homemade staples</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wrap featured-showcase reveal">
+      <div class="featured-showcase-head">
+        <div>
+          <h2>Today's kitchen-ready picks</h2>
+          <p>Start with the core essentials customers reorder the most, now as a quick slideshow below the brand display.</p>
+        </div>
+        <div class="featured-badge">
+          <span>Orders from</span>
+          <strong id="featuredStartingPrice">Rs. 0</strong>
+        </div>
+      </div>
+
+      <div class="featured-slider" aria-label="Featured products slideshow">
+        <button class="featured-arrow" id="featuredPrev" type="button" aria-label="Previous featured item">&#8249;</button>
+        <div class="featured-viewport" id="featuredViewport">
+          <div class="featured-track" id="featuredTrack"></div>
+        </div>
+        <button class="featured-arrow" id="featuredNext" type="button" aria-label="Next featured item">&#8250;</button>
+      </div>
+
+      <div class="featured-dots" id="featuredDots"></div>
+    </section>
+
+    <section class="section-wrap shop-shell reveal" id="shop">
+      <div class="section-heading">
+        <div>
+          <h2>Shop Spoorthi favourites</h2>
+          <p>Pick your size, adjust quantity, filter by category, and move straight into checkout whenever you are ready.</p>
+        </div>
+      </div>
+
+      <div class="controls-panel">
+        <label class="search-box" for="searchInput">
+          <span>Search</span>
+          <input id="searchInput" type="search" placeholder="Find ghee, kaaram, combos...">
+        </label>
+
+        <div class="controls-group">
+          <div class="category-pills" id="categoryPills"></div>
+          <select class="sort-select" id="sortSelect" aria-label="Sort products">
+            <option value="featured">Sort: Featured</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="popular">Most Popular</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="products-grid" id="productsGrid"></div>
+    </section>
+
+    <section class="section-wrap reveal" id="story">
+      <div class="section-heading">
+        <div>
+          <h2>Built like a real storefront, rooted in homemade trust</h2>
+          <p>The new site keeps your personal brand warmth while adding the pieces customers expect from an e-commerce experience.</p>
+        </div>
+      </div>
+
+      <div class="story-grid">
+        <article class="story-card">
+          <h3>Clear product choices</h3>
+          <p>Each product now supports size selection, quantity controls, searchable browsing, and price updates before anything reaches the cart.</p>
+        </article>
+        <article class="story-card">
+          <h3>Persistent shopping cart</h3>
+          <p>Visitors can add items, close the site, and come back later without losing their basket because the cart is stored locally in the browser.</p>
+        </article>
+        <article class="story-card">
+          <h3>Structured checkout handoff</h3>
+          <p>Instead of a simple link out, customers move through a proper checkout page with editable order details, delivery inputs, and confirmation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-wrap reveal" id="reviews">
+      <div class="testimonial-shell">
+        <div class="testimonial-card">
+          <h3>What customers love</h3>
+          <blockquote>
+            "The ghee tastes fresh, the spice mixes feel homemade, and the new cart + checkout flow makes repeat ordering much easier."
+          </blockquote>
+          <footer>Regular family customer from Hyderabad</footer>
+
+          <div class="review-grid">
+            <div class="review-pill">
+              <strong>Fresh packing</strong>
+              <span>Products feel newly prepared, not shelf-stale.</span>
+            </div>
+            <div class="review-pill">
+              <strong>Easy repeat buying</strong>
+              <span>Saved carts reduce friction for returning customers.</span>
+            </div>
+            <div class="review-pill">
+              <strong>Simple checkout</strong>
+              <span>Address, payment preference, and order confirmation all in one place.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-panel" id="contact">
+          <div>
+            <h3>Need help before you place an order?</h3>
+            <p style="margin:0;color:var(--muted);line-height:1.75;">
+              Reach out for bulk orders, festive hampers, or quick questions. The site is ready for shopping, and WhatsApp confirmation stays available too.
+            </p>
+          </div>
+
+          <div class="cta-list">
+            <div class="cta-item">
+              <div>
+                <strong>Order support</strong>
+                <span>Phone / WhatsApp</span>
+              </div>
+              <strong>+91 70325 40046<br>+91 95508 53466</strong>
+            </div>
+            <div class="cta-item">
+              <div>
+                <strong>Delivery promise</strong>
+                <span>Freshly packed after confirmation</span>
+              </div>
+              <strong>Carefully prepared</strong>
+            </div>
+            <div class="cta-item">
+              <div>
+                <strong>Checkout flow</strong>
+                <span>Cart, customer details, confirmation</span>
+              </div>
+              <strong>Ready now</strong>
+            </div>
+          </div>
+
+          <div class="hero-actions" style="margin-top:0;">
+            <a class="button button-primary" href="checkout.html">Go to Checkout</a>
+            <button class="button button-secondary" id="ctaCartButton" type="button">Open Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <div>
+        <strong>Spoorthi Home Foods</strong>
+        <p>Homemade pantry essentials with a cleaner online shopping experience.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#reviews">Reviews</a>
+        <a href="checkout.html">Checkout</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div class="cart-backdrop" id="cartBackdrop"></div>
+
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="cart-header">
+    <div>
+      <h2>Your cart</h2>
+      <p>Review items, adjust quantities, and move to checkout when ready.</p>
+    </div>
+    <button class="icon-button" id="closeCartButton" type="button" aria-label="Close cart">X</button>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-summary">
+    <div class="summary-row">
+      <span>Items</span>
+      <strong id="summaryItemsCount">0</strong>
+    </div>
+    <div class="summary-row">
+      <span>Subtotal</span>
+      <strong id="summarySubtotal">Rs. 0</strong>
+    </div>
+    <div class="summary-row total">
+      <span>Total payable</span>
+      <strong id="summaryTotal">Rs. 0</strong>
+    </div>
+  </div>
+
+  <div class="cart-footer">
+    <button class="checkout-button" id="checkoutButton" type="button">Proceed to Checkout</button>
+    <button class="button button-secondary" id="clearCartButton" type="button">Clear Cart</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast">Added to cart</div>
+
+<nav class="mobile-dock" aria-label="Mobile quick actions">
+  <a href="#shop">Shop</a>
+  <button id="mobileCartButton" type="button">Cart (<span id="mobileCartCount">0</span>)</button>
+  <a href="tel:+917032540046">Call</a>
+  <a class="mobile-checkout" href="checkout.html">Checkout</a>
+</nav>
+
+<script>
+const cartStorageKey = "spoorthiHomeFoodsCart";
+const products = [
+  {
+    id: "ghee",
+    name: "Homemade Ghee",
+    category: "Best Sellers",
+    image: "ghee.jpg",
+    badge: "Slow-cooked richness",
+    popularity: 98,
+    description: "Golden, aromatic ghee prepared in small batches for rotis, sweets, rice, and everyday cooking.",
+    sizes: [
+      { label: "500 g", price: 450, note: "Most popular" },
+      { label: "1 kg", price: 900, note: "Family stock-up" }
+    ]
+  },
+  {
+    id: "sambar",
+    name: "Masala Karam",
+    category: "Masalas",
+    image: "sambar.jpg",
+    badge: "Balanced everyday spice",
+    popularity: 95,
+    description: "A homestyle blend with depth, warmth, and the familiar kitchen aroma needed for daily curries and masala cooking.",
+    sizes: [
+      { label: "500 g", price: 250, note: "Value pack" },
+      { label: "1 kg", price: 500, note: "Bulk saver" }
+    ]
+  },
+  {
+    id: "mirchi",
+    name: "Guntur Mirchi Kaaram",
+    category: "Masalas",
+    image: "mirchi.jpg",
+    badge: "Bold Andhra heat",
+    popularity: 93,
+    description: "Bright red chilli blend with signature Guntur sharpness, ideal for fry bases, marinades, and spice lovers.",
+    sizes: [
+      { label: "500 g", price: 250, note: "Kitchen staple" },
+      { label: "1 kg", price: 500, note: "Best per gram" }
+    ]
+  }
+];
+
+const productLookup = new Map(products.map((product) => [product.id, product]));
+
+const categories = ["All"].concat(
+  [...new Set(products.map((product) => product.category))]
+);
+
+let selectedCategory = "All";
+let currentSort = "featured";
+let currentSearch = "";
+let cart = normalizeCart(loadCart());
+const selections = {};
+
+saveCart();
+
+products.forEach((product) => {
+  selections[product.id] = { sizeIndex: 0, qty: 1 };
+});
+
+const productsGrid = document.getElementById("productsGrid");
+const categoryPills = document.getElementById("categoryPills");
+const searchInput = document.getElementById("searchInput");
+const sortSelect = document.getElementById("sortSelect");
+const cartDrawer = document.getElementById("cartDrawer");
+const cartBackdrop = document.getElementById("cartBackdrop");
+const cartItems = document.getElementById("cartItems");
+const toast = document.getElementById("toast");
+const mobileCartCount = document.getElementById("mobileCartCount");
+const featuredTrack = document.getElementById("featuredTrack");
+const featuredDots = document.getElementById("featuredDots");
+const featuredViewport = document.getElementById("featuredViewport");
+const featuredProducts = products.slice(0, 3);
+let currentFeaturedSlide = 0;
+let featuredAutoplayId = null;
+let featuredTouchStartX = 0;
+let featuredTouchEndX = 0;
+
+function formatCurrency(value){
+  return "Rs. " + value.toLocaleString("en-IN");
+}
+
+function loadCart(){
+  try{
+    return JSON.parse(localStorage.getItem(cartStorageKey)) || [];
+  }catch(error){
+    return [];
+  }
+}
+
+function normalizeCart(rawCart){
+  return rawCart.reduce((items, item) => {
+    const normalizedItem = normalizeCartItem(item);
+
+    if(!normalizedItem){
+      return items;
+    }
+
+    const existing = items.find((entry) => {
+      return entry.productId === normalizedItem.productId && entry.sizeLabel === normalizedItem.sizeLabel;
+    });
+
+    if(existing){
+      existing.qty += normalizedItem.qty;
+      return items;
+    }
+
+    items.push(normalizedItem);
+    return items;
+  }, []);
+}
+
+function normalizeCartItem(item){
+  if(item.productId === "combo"){
+    return null;
+  }
+
+  const product = productLookup.get(item.productId);
+
+  if(!product){
+    return null;
+  }
+
+  const size = product.sizes.find((option) => option.label === item.sizeLabel);
+
+  if(!size){
+    return null;
+  }
+
+  return {
+    productId: product.id,
+    name: product.name,
+    image: product.image,
+    sizeLabel: size.label,
+    price: size.price,
+    qty: Math.max(1, Number(item.qty) || 1)
+  };
+}
+
+function saveCart(){
+  localStorage.setItem(cartStorageKey, JSON.stringify(cart));
+}
+
+function getSelection(productId){
+  return selections[productId];
+}
+
+function getSelectedSize(product){
+  const selection = getSelection(product.id);
+  return product.sizes[selection.sizeIndex] || product.sizes[0];
+}
+
+function getFeaturedSizeDetails(product){
+  const sizeIndex = 0;
+  return {
+    sizeIndex,
+    size: product.sizes[sizeIndex]
+  };
+}
+
+function getCartTotals(){
+  const itemsCount = cart.reduce((sum, item) => sum + item.qty, 0);
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  return {
+    itemsCount,
+    subtotal,
+    total: subtotal
+  };
+}
+
+function getFeaturedStartingPrice(){
+  return Math.min(...featuredProducts.map((product) => product.sizes[0].price));
+}
+
+function renderFeaturedSlider(){
+  document.getElementById("featuredStartingPrice").textContent = formatCurrency(getFeaturedStartingPrice());
+
+  featuredTrack.innerHTML = featuredProducts.map((product) => {
+    const featuredSelection = getFeaturedSizeDetails(product);
+    return `
+      <article class="featured-slide">
+        <div class="featured-card">
+          <div class="featured-card-media">
+            <img src="${product.image}" alt="${product.name}">
+            <div class="featured-card-badge">${product.badge}</div>
+          </div>
+
+          <div class="featured-card-body">
+            <div class="featured-card-top">
+              <div>
+                <div class="featured-card-category">${product.category}</div>
+                <h3 class="featured-card-title">${product.name}</h3>
+                <p class="featured-card-desc">${product.description}</p>
+              </div>
+              <div class="featured-card-price">
+                <strong>${formatCurrency(featuredSelection.size.price)}</strong>
+                <span>${featuredSelection.size.label} top pick</span>
+              </div>
+            </div>
+
+            <div class="featured-card-actions">
+              <button
+                class="featured-add"
+                type="button"
+                data-featured-action="add"
+                data-product-id="${product.id}"
+                data-featured-size-index="${featuredSelection.sizeIndex}"
+              >
+                Add ${featuredSelection.size.label} to Cart
+              </button>
+              <span class="featured-note">${featuredSelection.size.note}</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  featuredDots.innerHTML = featuredProducts.map((product, index) => {
+    const activeClass = index === currentFeaturedSlide ? "active" : "";
+    return `<button class="featured-dot ${activeClass}" type="button" data-featured-dot="${index}" aria-label="Show ${product.name}"></button>`;
+  }).join("");
+
+  updateFeaturedSlider();
+}
+
+function updateFeaturedSlider(){
+  featuredTrack.style.transform = `translateX(-${currentFeaturedSlide * 100}%)`;
+
+  featuredDots.querySelectorAll(".featured-dot").forEach((dot, index) => {
+    dot.classList.toggle("active", index === currentFeaturedSlide);
+  });
+}
+
+function goToFeaturedSlide(index){
+  const maxIndex = featuredProducts.length - 1;
+  currentFeaturedSlide = index;
+
+  if(currentFeaturedSlide < 0){
+    currentFeaturedSlide = maxIndex;
+  }
+
+  if(currentFeaturedSlide > maxIndex){
+    currentFeaturedSlide = 0;
+  }
+
+  updateFeaturedSlider();
+}
+
+function nextFeaturedSlide(){
+  goToFeaturedSlide(currentFeaturedSlide + 1);
+}
+
+function prevFeaturedSlide(){
+  goToFeaturedSlide(currentFeaturedSlide - 1);
+}
+
+function stopFeaturedAutoplay(){
+  if(featuredAutoplayId){
+    window.clearInterval(featuredAutoplayId);
+  }
+}
+
+function startFeaturedAutoplay(){
+  stopFeaturedAutoplay();
+
+  if(featuredProducts.length < 2){
+    return;
+  }
+
+  featuredAutoplayId = window.setInterval(() => {
+    nextFeaturedSlide();
+  }, 4200);
+}
+
+function renderCategories(){
+  categoryPills.innerHTML = categories.map((category) => {
+    const activeClass = category === selectedCategory ? "active" : "";
+    return `<button class="category-pill ${activeClass}" type="button" data-category="${category}">${category}</button>`;
+  }).join("");
+}
+
+function getFilteredProducts(){
+  const filtered = products.filter((product) => {
+    const haystack = `${product.name} ${product.category} ${product.description}`.toLowerCase();
+    const matchesSearch = haystack.includes(currentSearch.toLowerCase().trim());
+    const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  return filtered.sort((first, second) => {
+    const firstPrice = getSelectedSize(first).price;
+    const secondPrice = getSelectedSize(second).price;
+
+    if(currentSort === "price-low"){
+      return firstPrice - secondPrice;
+    }
+
+    if(currentSort === "price-high"){
+      return secondPrice - firstPrice;
+    }
+
+    return second.popularity - first.popularity;
+  });
+}
+
+function renderProducts(){
+  const visibleProducts = getFilteredProducts();
+
+  if(visibleProducts.length === 0){
+    productsGrid.innerHTML = `
+      <div class="empty-state">
+        <h3 style="margin-top:0;">No products matched your search.</h3>
+        <p>Try a different keyword or switch back to "All" categories.</p>
+      </div>
+    `;
+    return;
+  }
+
+  productsGrid.innerHTML = visibleProducts.map((product) => {
+    const selection = getSelection(product.id);
+    const currentSize = product.sizes[selection.sizeIndex];
+    const sizeMarkup = product.sizes.map((size, index) => {
+      const activeClass = index === selection.sizeIndex ? "active" : "";
+      return `
+        <button class="size-chip ${activeClass}" type="button" data-action="size" data-product-id="${product.id}" data-size-index="${index}">
+          <strong>${size.label}</strong>
+          <span>${formatCurrency(size.price)} - ${size.note}</span>
+        </button>
+      `;
+    }).join("");
+
+    return `
+      <article class="product-card">
+        <div class="product-media">
+          <img src="${product.image}" alt="${product.name}">
+          <div class="product-badge">${product.badge}</div>
+        </div>
+
+        <div class="product-body">
+          <div class="product-top">
+            <div>
+              <div class="product-category">${product.category}</div>
+              <h3 class="product-title">${product.name}</h3>
+              <p class="product-desc">${product.description}</p>
+            </div>
+          </div>
+
+          <div class="size-row">${sizeMarkup}</div>
+
+          <div class="product-footer">
+            <div class="price-row">
+              <div>
+                <strong>${formatCurrency(currentSize.price)}</strong>
+                <span>${currentSize.label} selected</span>
+              </div>
+              <span>${currentSize.note}</span>
+            </div>
+
+            <div class="cart-actions">
+              <div class="qty-control" aria-label="Quantity selector">
+                <button type="button" data-action="decrement" data-product-id="${product.id}">-</button>
+                <span>${selection.qty}</span>
+                <button type="button" data-action="increment" data-product-id="${product.id}">+</button>
+              </div>
+              <button class="add-button" type="button" data-action="add" data-product-id="${product.id}">
+                Add ${selection.qty} to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function openCart(){
+  document.body.classList.add("cart-open");
+  cartDrawer.classList.add("open");
+  cartBackdrop.classList.add("visible");
+}
+
+function closeCart(){
+  document.body.classList.remove("cart-open");
+  cartDrawer.classList.remove("open");
+  cartBackdrop.classList.remove("visible");
+}
+
+function showToast(message){
+  toast.textContent = message;
+  toast.classList.add("visible");
+  window.clearTimeout(showToast.timeoutId);
+  showToast.timeoutId = window.setTimeout(() => {
+    toast.classList.remove("visible");
+  }, 1800);
+}
+
+function addToCart(productId){
+  const product = products.find((item) => item.id === productId);
+  const selection = getSelection(productId);
+  const size = product.sizes[selection.sizeIndex];
+  const existing = cart.find((item) => item.productId === productId && item.sizeLabel === size.label);
+
+  if(existing){
+    existing.qty += selection.qty;
+  }else{
+    cart.push({
+      productId,
+      name: product.name,
+      image: product.image,
+      sizeLabel: size.label,
+      price: size.price,
+      qty: selection.qty
+    });
+  }
+
+  saveCart();
+  renderCart();
+  openCart();
+  showToast(product.name + " added to cart");
+}
+
+function addFeaturedToCart(productId, sizeIndex){
+  selections[productId].sizeIndex = sizeIndex;
+  selections[productId].qty = 1;
+  addToCart(productId);
+  renderProducts();
+}
+
+function changeProductQty(productId, amount){
+  const selection = getSelection(productId);
+  selection.qty = Math.max(1, selection.qty + amount);
+  renderProducts();
+}
+
+function changeCartQty(index, amount){
+  const item = cart[index];
+  if(!item){
+    return;
+  }
+
+  item.qty += amount;
+
+  if(item.qty <= 0){
+    cart.splice(index, 1);
+  }
+
+  saveCart();
+  renderCart();
+}
+
+function removeCartItem(index){
+  cart.splice(index, 1);
+  saveCart();
+  renderCart();
+}
+
+function clearCart(){
+  cart = [];
+  saveCart();
+  renderCart();
+  showToast("Cart cleared");
+}
+
+function renderCart(){
+  const totals = getCartTotals();
+
+  document.getElementById("cartCount").textContent = totals.itemsCount;
+  mobileCartCount.textContent = totals.itemsCount;
+  document.getElementById("summaryItemsCount").textContent = totals.itemsCount;
+  document.getElementById("summarySubtotal").textContent = formatCurrency(totals.subtotal);
+  document.getElementById("summaryTotal").textContent = formatCurrency(totals.total);
+  document.getElementById("checkoutButton").disabled = cart.length === 0;
+
+  if(cart.length === 0){
+    cartItems.innerHTML = `
+      <div class="empty-state">
+        <h3 style="margin-top:0;">Your cart is empty</h3>
+        <p>Add some Spoorthi favourites and your order summary will appear here.</p>
+      </div>
+    `;
+    return;
+  }
+
+  cartItems.innerHTML = cart.map((item, index) => {
+    return `
+      <article class="cart-item">
+        <div>
+          <h3>${item.name}</h3>
+          <p>${item.sizeLabel}</p>
+          <div class="cart-item-meta">
+            <div class="cart-mini-controls">
+              <button class="mini-button" type="button" data-cart-action="decrement" data-index="${index}">-</button>
+              <strong>${item.qty}</strong>
+              <button class="mini-button" type="button" data-cart-action="increment" data-index="${index}">+</button>
+            </div>
+            <strong>${formatCurrency(item.price * item.qty)}</strong>
+          </div>
+          <div style="margin-top:10px;">
+            <button class="link-button" type="button" data-cart-action="remove" data-index="${index}">Remove</button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function proceedToCheckout(){
+  if(cart.length === 0){
+    showToast("Add at least one product before checkout");
+    return;
+  }
+
+  saveCart();
+  window.location.href = "checkout.html";
+}
+
+function setupEvents(){
+  categoryPills.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-category]");
+    if(!button){
+      return;
+    }
+
+    selectedCategory = button.dataset.category;
+    renderCategories();
+    renderProducts();
+  });
+
+  searchInput.addEventListener("input", (event) => {
+    currentSearch = event.target.value;
+    renderProducts();
+  });
+
+  sortSelect.addEventListener("change", (event) => {
+    currentSort = event.target.value;
+    renderProducts();
+  });
+
+  productsGrid.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if(!button){
+      return;
+    }
+
+    const productId = button.dataset.productId;
+    const action = button.dataset.action;
+
+    if(action === "size"){
+      selections[productId].sizeIndex = Number(button.dataset.sizeIndex);
+      renderProducts();
+      return;
+    }
+
+    if(action === "increment"){
+      changeProductQty(productId, 1);
+      return;
+    }
+
+    if(action === "decrement"){
+      changeProductQty(productId, -1);
+      return;
+    }
+
+    if(action === "add"){
+      addToCart(productId);
+    }
+  });
+
+  featuredTrack.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if(!button){
+      return;
+    }
+
+    if(button.dataset.featuredAction === "add"){
+      addFeaturedToCart(button.dataset.productId, Number(button.dataset.featuredSizeIndex));
+    }
+  });
+
+  featuredDots.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-featured-dot]");
+    if(!button){
+      return;
+    }
+
+    goToFeaturedSlide(Number(button.dataset.featuredDot));
+    startFeaturedAutoplay();
+  });
+
+  cartItems.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if(!button){
+      return;
+    }
+
+    const index = Number(button.dataset.index);
+    const action = button.dataset.cartAction;
+
+    if(action === "increment"){
+      changeCartQty(index, 1);
+      return;
+    }
+
+    if(action === "decrement"){
+      changeCartQty(index, -1);
+      return;
+    }
+
+    if(action === "remove"){
+      removeCartItem(index);
+    }
+  });
+
+  document.getElementById("featuredPrev").addEventListener("click", () => {
+    prevFeaturedSlide();
+    startFeaturedAutoplay();
+  });
+
+  document.getElementById("featuredNext").addEventListener("click", () => {
+    nextFeaturedSlide();
+    startFeaturedAutoplay();
+  });
+
+  featuredViewport.addEventListener("mouseenter", stopFeaturedAutoplay);
+  featuredViewport.addEventListener("mouseleave", startFeaturedAutoplay);
+
+  featuredViewport.addEventListener("touchstart", (event) => {
+    featuredTouchStartX = event.changedTouches[0].clientX;
+    stopFeaturedAutoplay();
+  }, { passive: true });
+
+  featuredViewport.addEventListener("touchend", (event) => {
+    featuredTouchEndX = event.changedTouches[0].clientX;
+    const delta = featuredTouchStartX - featuredTouchEndX;
+
+    if(Math.abs(delta) > 40){
+      if(delta > 0){
+        nextFeaturedSlide();
+      }else{
+        prevFeaturedSlide();
+      }
+    }
+
+    startFeaturedAutoplay();
+  }, { passive: true });
+
+  document.getElementById("cartToggle").addEventListener("click", openCart);
+  document.getElementById("mobileCartButton").addEventListener("click", openCart);
+  document.getElementById("ctaCartButton").addEventListener("click", openCart);
+  document.getElementById("closeCartButton").addEventListener("click", closeCart);
+  cartBackdrop.addEventListener("click", closeCart);
+  document.getElementById("clearCartButton").addEventListener("click", clearCart);
+  document.getElementById("checkoutButton").addEventListener("click", proceedToCheckout);
+}
+
+function setupRevealAnimations(){
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("revealed");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll(".reveal").forEach((element) => {
+    observer.observe(element);
+  });
+}
+
+renderFeaturedSlider();
+renderCategories();
+renderProducts();
+renderCart();
+setupEvents();
+setupRevealAnimations();
+startFeaturedAutoplay();
+</script>
+</body>
+</html>

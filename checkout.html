@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spoorthi Home Foods | Checkout</title>
+<style>
+:root{
+  --bg:#f4ede3;
+  --surface:rgba(255,255,255,0.18);
+  --surface-strong:rgba(255,255,255,0.28);
+  --ink:#2f1c10;
+  --muted:#6d5748;
+  --line:rgba(73,42,24,0.12);
+  --brand:#9c3d20;
+  --brand-deep:#6d2110;
+  --accent:#edb54a;
+  --accent-soft:#fff1cf;
+  --success:#24754a;
+  --danger:#b54428;
+  --glass-border:rgba(255,255,255,0.42);
+  --shadow:0 24px 60px rgba(70,37,19,0.12);
+  --shadow-soft:0 16px 40px rgba(70,37,19,0.1);
+  --radius-xl:28px;
+  --radius-lg:22px;
+  --radius-md:16px;
+  --max-width:1180px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:"Trebuchet MS","Segoe UI",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.95), transparent 32%),
+    radial-gradient(circle at top right, rgba(237,181,74,0.22), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(156,61,32,0.14), transparent 30%),
+    linear-gradient(145deg, #efe3d5 0%, #f8f3ec 42%, #eadacc 100%);
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+.page-shell{
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+}
+
+.page-shell::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(255,255,255,0.45), transparent 24%),
+    radial-gradient(circle at 82% 18%, rgba(237,181,74,0.16), transparent 22%),
+    radial-gradient(circle at 78% 82%, rgba(156,61,32,0.12), transparent 24%);
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter:blur(24px);
+  background:rgba(255,255,255,0.18);
+  border-bottom:1px solid var(--glass-border);
+  box-shadow:0 10px 30px rgba(95,59,36,0.08);
+}
+
+.topbar-inner{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+}
+
+.brand{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.brand strong{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.35rem;
+}
+
+.brand span{
+  color:var(--muted);
+  font-size:0.9rem;
+}
+
+.topbar-actions{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:11px 16px;
+  border-radius:999px;
+  border:1px solid var(--glass-border);
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(18px);
+  font-weight:800;
+}
+
+.pill-primary{
+  background:linear-gradient(135deg, var(--brand), var(--brand-deep));
+  border-color:transparent;
+  color:#fff;
+}
+
+.content{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:34px 20px 42px;
+}
+
+.intro{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-end;
+  margin-bottom:22px;
+}
+
+.intro h1{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(2rem,4vw,3.2rem);
+}
+
+.intro p{
+  margin:10px 0 0;
+  color:var(--muted);
+  max-width:720px;
+  line-height:1.75;
+}
+
+.checkout-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(340px,0.8fr);
+  gap:22px;
+}
+
+.panel{
+  background:var(--surface);
+  backdrop-filter:blur(28px);
+  -webkit-backdrop-filter:blur(28px);
+  border-radius:var(--radius-xl);
+  border:1px solid var(--glass-border);
+  box-shadow:var(--shadow);
+}
+
+.panel-inner{
+  padding:28px;
+}
+
+.section-stack{
+  display:grid;
+  gap:18px;
+}
+
+.section-card{
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(20px);
+  border-radius:22px;
+  border:1px solid var(--glass-border);
+  padding:22px;
+}
+
+.section-card h2,
+.summary-card h2{
+  margin:0 0 8px;
+  font-size:1.25rem;
+}
+
+.section-card p,
+.summary-card p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.65;
+}
+
+.field-grid{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.field{
+  display:grid;
+  gap:8px;
+}
+
+.field.full{
+  grid-column:1 / -1;
+}
+
+.field label{
+  font-weight:700;
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  padding:14px 15px;
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(16px);
+  color:var(--ink);
+  outline:none;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+  border-color:var(--brand);
+  box-shadow:0 0 0 3px rgba(156,61,32,0.12);
+}
+
+.field textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.summary-card{
+  display:grid;
+  gap:18px;
+}
+
+.summary-list{
+  display:grid;
+  gap:12px;
+}
+
+.summary-item{
+  padding:14px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--glass-border);
+}
+
+.summary-item h3{
+  margin:0 0 4px;
+  font-size:1rem;
+}
+
+.summary-item p{
+  margin:0;
+  color:var(--muted);
+  font-size:0.92rem;
+}
+
+.summary-item-footer{
+  margin-top:12px;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+}
+
+.qty{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+
+.mini{
+  width:28px;
+  height:28px;
+  border:none;
+  border-radius:10px;
+  background:rgba(255,255,255,0.22);
+  backdrop-filter:blur(16px);
+  color:var(--brand-deep);
+  font-weight:800;
+  cursor:pointer;
+}
+
+.link-button{
+  border:none;
+  background:none;
+  padding:0;
+  cursor:pointer;
+  color:var(--brand);
+  font-weight:800;
+}
+
+.cost-card{
+  padding:20px;
+  border-radius:22px;
+  background:rgba(255,255,255,0.22);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--glass-border);
+  display:grid;
+  gap:10px;
+}
+
+.cost-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  color:var(--muted);
+}
+
+.cost-row strong{
+  color:var(--ink);
+}
+
+.cost-row.total{
+  padding-top:10px;
+  margin-top:4px;
+  border-top:1px solid rgba(73,42,24,0.08);
+  font-size:1.08rem;
+  font-weight:800;
+}
+
+.benefits{
+  display:grid;
+  gap:12px;
+}
+
+.benefit{
+  padding:16px 18px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--glass-border);
+}
+
+.benefit strong{
+  display:block;
+  margin-bottom:6px;
+}
+
+.benefit span{
+  color:var(--muted);
+  font-size:0.92rem;
+  line-height:1.55;
+}
+
+.terms{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  margin-top:16px;
+  color:var(--muted);
+  line-height:1.65;
+}
+
+.terms input{
+  margin-top:4px;
+}
+
+.submit-row{
+  margin-top:18px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.button{
+  border:none;
+  border-radius:999px;
+  padding:14px 22px;
+  cursor:pointer;
+  font-weight:800;
+}
+
+.button-primary{
+  background:linear-gradient(135deg, var(--brand), var(--brand-deep));
+  color:#fff;
+}
+
+.button-secondary{
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(18px);
+  color:var(--ink);
+  border:1px solid var(--glass-border);
+}
+
+.error-box,
+.success-box{
+  display:none;
+  padding:14px 16px;
+  border-radius:18px;
+  font-weight:700;
+}
+
+.error-box{
+  background:#fff0eb;
+  color:var(--danger);
+  border:1px solid rgba(181,68,40,0.12);
+}
+
+.success-box{
+  background:#eef9f2;
+  color:var(--success);
+  border:1px solid rgba(36,117,74,0.12);
+}
+
+.empty-state{
+  padding:26px;
+  border-radius:22px;
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  text-align:center;
+}
+
+.confirmation{
+  margin-top:22px;
+  display:none;
+}
+
+.confirmation-card{
+  padding:28px;
+  border-radius:var(--radius-xl);
+  background:rgba(255,255,255,0.22);
+  backdrop-filter:blur(24px);
+  border:1px solid var(--glass-border);
+  box-shadow:var(--shadow);
+}
+
+.confirmation-card h2{
+  margin:0 0 10px;
+  font-size:1.8rem;
+}
+
+.confirmation-card p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.confirmation-grid{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+
+.confirmation-pill{
+  padding:16px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--glass-border);
+}
+
+.confirmation-pill strong{
+  display:block;
+  margin-bottom:6px;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.mobile-checkout-bar{
+  display:none;
+}
+
+@media (max-width:1024px){
+  .checkout-grid{
+    grid-template-columns:1fr;
+  }
+
+  .checkout-grid > aside{
+    order:-1;
+  }
+}
+
+@media (max-width:720px){
+  .field-grid,
+  .confirmation-grid,
+  .intro,
+  .topbar-inner{
+    grid-template-columns:1fr;
+    display:grid;
+  }
+
+  .topbar-actions{
+    width:100%;
+    justify-content:space-between;
+  }
+
+  .checkout-submit-row{
+    display:none;
+  }
+
+  .mobile-checkout-bar{
+    position:fixed;
+    left:12px;
+    right:12px;
+    bottom:calc(12px + env(safe-area-inset-bottom));
+    z-index:30;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:12px 14px;
+    border-radius:22px;
+    background:rgba(255,255,255,0.3);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+    border:1px solid var(--glass-border);
+    box-shadow:0 18px 40px rgba(70,37,19,0.14);
+  }
+
+  .mobile-checkout-meta{
+    display:grid;
+    gap:2px;
+  }
+
+  .mobile-checkout-meta span{
+    color:var(--muted);
+    font-size:0.82rem;
+    font-weight:700;
+  }
+
+  .mobile-checkout-meta strong{
+    font-size:1.1rem;
+  }
+
+  .mobile-checkout-submit{
+    min-width:150px;
+    min-height:54px;
+    border:none;
+    border-radius:18px;
+    background:linear-gradient(135deg, var(--brand), var(--brand-deep));
+    color:#fff;
+    font-weight:800;
+    cursor:pointer;
+  }
+
+  body{
+    padding-bottom:110px;
+  }
+
+}
+
+@media (max-width:560px){
+  .content{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .topbar-inner{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .panel-inner{
+    padding:18px;
+  }
+
+  .section-card{
+    padding:18px;
+  }
+
+  input,
+  textarea,
+  select{
+    font-size:16px;
+  }
+
+  .mobile-checkout-bar{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .mobile-checkout-submit{
+    width:100%;
+  }
+
+}
+</style>
+</head>
+<body>
+<div class="page-shell">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <strong>Spoorthi Home Foods</strong>
+        <span>Secure order review and checkout</span>
+      </a>
+
+      <div class="topbar-actions">
+        <a class="pill" href="index.html">Continue Shopping</a>
+        <div class="pill pill-primary" id="headerTotal">Rs. 0</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="intro">
+      <div>
+        <h1>Checkout</h1>
+        <p>
+          Review your basket, enter delivery details, choose your preferred confirmation method,
+          and place your order with Spoorthi Home Foods.
+        </p>
+      </div>
+    </section>
+
+    <div class="checkout-grid">
+      <section class="panel">
+        <div class="panel-inner">
+          <div class="section-stack" id="checkoutContent">
+            <form id="checkoutForm" novalidate>
+              <div class="error-box" id="errorBox"></div>
+              <div class="success-box" id="successBox"></div>
+
+              <article class="section-card">
+                <h2>Customer details</h2>
+                <p>Fill in the essentials so your order can be confirmed and delivered correctly.</p>
+
+                <div class="field-grid">
+                  <div class="field">
+                    <label for="fullName">Full name</label>
+                    <input id="fullName" name="fullName" type="text" placeholder="Enter your name" autocomplete="name" enterkeyhint="next" required>
+                  </div>
+                  <div class="field">
+                    <label for="phone">Phone number</label>
+                    <input id="phone" name="phone" type="tel" placeholder="10-digit mobile number" pattern="[6-9][0-9]{9}" inputmode="numeric" autocomplete="tel" enterkeyhint="next" required>
+                  </div>
+                  <div class="field">
+                    <label for="email">Email (optional)</label>
+                    <input id="email" name="email" type="email" placeholder="name@example.com" autocomplete="email" enterkeyhint="next">
+                  </div>
+                  <div class="field">
+                    <label for="city">City</label>
+                    <input id="city" name="city" type="text" placeholder="Enter city" autocomplete="address-level2" enterkeyhint="next" required>
+                  </div>
+                  <div class="field">
+                    <label for="state">State</label>
+                    <input id="state" name="state" type="text" placeholder="Enter state" autocomplete="address-level1" enterkeyhint="next" required>
+                  </div>
+                  <div class="field">
+                    <label for="pincode">Pincode</label>
+                    <input id="pincode" name="pincode" type="text" placeholder="6-digit pincode" pattern="[0-9]{6}" inputmode="numeric" autocomplete="postal-code" enterkeyhint="next" required>
+                  </div>
+                  <div class="field full">
+                    <label for="address">Delivery address</label>
+                    <textarea id="address" name="address" placeholder="House number, street, landmark, area" autocomplete="street-address" enterkeyhint="next" required></textarea>
+                  </div>
+                  <div class="field full">
+                    <label for="notes">Order notes (optional)</label>
+                    <textarea id="notes" name="notes" placeholder="Add any packing, landmark, or delivery note" enterkeyhint="done"></textarea>
+                  </div>
+                </div>
+
+                <label class="terms">
+                  <input id="terms" type="checkbox">
+                  <span>I confirm that the address and phone number are correct for delivery coordination.</span>
+                </label>
+
+                <div class="submit-row checkout-submit-row">
+                  <button class="button button-primary" type="submit">Place Order</button>
+                  <a class="button button-secondary" href="index.html">Back to Shop</a>
+                </div>
+              </article>
+            </form>
+
+            <div class="confirmation" id="confirmationSection">
+              <div class="confirmation-card">
+                <h2>Order placed successfully</h2>
+                <p id="confirmationText">
+                  Your order has been saved. Use WhatsApp if you want to send the order details instantly as well.
+                </p>
+
+                <div class="confirmation-grid">
+                  <div class="confirmation-pill">
+                    <strong>Order ID</strong>
+                    <span id="confirmationOrderId" class="muted">-</span>
+                  </div>
+                  <div class="confirmation-pill">
+                    <strong>Order total</strong>
+                    <span id="confirmationOrderTotal" class="muted">-</span>
+                  </div>
+                  <div class="confirmation-pill">
+                    <strong>Delivery</strong>
+                    <span id="confirmationDelivery" class="muted">-</span>
+                  </div>
+                </div>
+
+                <div class="submit-row">
+                  <a class="button button-primary" id="whatsAppLink" href="#" target="_blank" rel="noopener">Open WhatsApp confirmation</a>
+                  <a class="button button-secondary" href="index.html">Continue Shopping</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <div class="panel-inner summary-card">
+          <div>
+            <h2>Order summary</h2>
+            <p>Edit quantities here if you need to make a quick change before placing the order.</p>
+          </div>
+
+          <div id="emptyCartState" class="empty-state" style="display:none;">
+            <h3 style="margin-top:0;">Your cart is empty</h3>
+            <p>Add products from the storefront and return here to complete the order.</p>
+            <div class="submit-row" style="justify-content:center;">
+              <a class="button button-primary" href="index.html">Shop Now</a>
+            </div>
+          </div>
+
+          <div class="summary-list" id="summaryList"></div>
+
+          <div class="cost-card">
+            <div class="cost-row">
+              <span>Items</span>
+              <strong id="itemCount">0</strong>
+            </div>
+            <div class="cost-row">
+              <span>Subtotal</span>
+              <strong id="subtotalValue">Rs. 0</strong>
+            </div>
+            <div class="cost-row total">
+              <span>Total payable</span>
+              <strong id="totalValue">Rs. 0</strong>
+            </div>
+          </div>
+
+          <div class="benefits">
+            <div class="benefit">
+              <strong>Saved order history</strong>
+              <span>Your placed orders are stored locally in this browser for quick reference.</span>
+            </div>
+            <div class="benefit">
+              <strong>WhatsApp-ready message</strong>
+              <span>The checkout builds a clean confirmation message automatically for the business number.</span>
+            </div>
+            <div class="benefit">
+              <strong>Direct order flow</strong>
+              <span>Your order goes from form to confirmation quickly, without extra checkout steps.</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+
+<div class="mobile-checkout-bar">
+  <div class="mobile-checkout-meta">
+    <span>Total payable</span>
+    <strong id="mobileCheckoutTotal">Rs. 0</strong>
+  </div>
+  <button class="mobile-checkout-submit" type="submit" form="checkoutForm">Place Order</button>
+</div>
+
+<script>
+const businessPhone = "917032540046";
+const cartStorageKey = "spoorthiHomeFoodsCart";
+const orderStorageKey = "spoorthiHomeFoodsOrders";
+const latestOrderKey = "spoorthiHomeFoodsLatestOrder";
+const customerStorageKey = "spoorthiHomeFoodsCustomer";
+const productCatalog = {
+  ghee: {
+    name: "Homemade Ghee",
+    sizes: {
+      "500 g": 450,
+      "1 kg": 900
+    }
+  },
+  sambar: {
+    name: "Masala Karam",
+    sizes: {
+      "500 g": 250,
+      "1 kg": 500
+    }
+  },
+  mirchi: {
+    name: "Guntur Mirchi Kaaram",
+    sizes: {
+      "500 g": 250,
+      "1 kg": 500
+    }
+  }
+};
+
+let cart = normalizeCart(loadCart());
+let lastOrderMessage = "";
+
+saveCart();
+
+const summaryList = document.getElementById("summaryList");
+const emptyCartState = document.getElementById("emptyCartState");
+const errorBox = document.getElementById("errorBox");
+const successBox = document.getElementById("successBox");
+const checkoutForm = document.getElementById("checkoutForm");
+const confirmationSection = document.getElementById("confirmationSection");
+const mobileCheckoutTotal = document.getElementById("mobileCheckoutTotal");
+const mobileCheckoutBar = document.querySelector(".mobile-checkout-bar");
+
+function formatCurrency(value){
+  return "Rs. " + value.toLocaleString("en-IN");
+}
+
+function loadCart(){
+  try{
+    return JSON.parse(localStorage.getItem(cartStorageKey)) || [];
+  }catch(error){
+    return [];
+  }
+}
+
+function normalizeCart(rawCart){
+  return rawCart.reduce((items, item) => {
+    const normalizedItem = normalizeCartItem(item);
+
+    if(!normalizedItem){
+      return items;
+    }
+
+    const existing = items.find((entry) => {
+      return entry.productId === normalizedItem.productId && entry.sizeLabel === normalizedItem.sizeLabel;
+    });
+
+    if(existing){
+      existing.qty += normalizedItem.qty;
+      return items;
+    }
+
+    items.push(normalizedItem);
+    return items;
+  }, []);
+}
+
+function normalizeCartItem(item){
+  if(item.productId === "combo"){
+    return null;
+  }
+
+  const product = productCatalog[item.productId];
+
+  if(!product){
+    return null;
+  }
+
+  const price = product.sizes[item.sizeLabel];
+
+  if(!price){
+    return null;
+  }
+
+  return {
+    ...item,
+    name: product.name,
+    price,
+    qty: Math.max(1, Number(item.qty) || 1)
+  };
+}
+
+function saveCart(){
+  localStorage.setItem(cartStorageKey, JSON.stringify(cart));
+}
+
+function loadCustomerDetails(){
+  try{
+    return JSON.parse(localStorage.getItem(customerStorageKey)) || {};
+  }catch(error){
+    return {};
+  }
+}
+
+function saveCustomerDetails(details){
+  localStorage.setItem(customerStorageKey, JSON.stringify(details));
+}
+
+function getTotals(){
+  const itemCount = cart.reduce((sum, item) => sum + item.qty, 0);
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+  return {
+    itemCount,
+    subtotal,
+    total: subtotal
+  };
+}
+
+function renderSummary(){
+  const totals = getTotals();
+
+  document.getElementById("headerTotal").textContent = formatCurrency(totals.total);
+  mobileCheckoutTotal.textContent = formatCurrency(totals.total);
+  document.getElementById("itemCount").textContent = totals.itemCount;
+  document.getElementById("subtotalValue").textContent = formatCurrency(totals.subtotal);
+  document.getElementById("totalValue").textContent = formatCurrency(totals.total);
+  mobileCheckoutBar.hidden = cart.length === 0;
+
+  if(cart.length === 0){
+    emptyCartState.style.display = "block";
+    summaryList.innerHTML = "";
+    checkoutForm.style.display = "none";
+    return;
+  }
+
+  emptyCartState.style.display = "none";
+  checkoutForm.style.display = "block";
+
+  summaryList.innerHTML = cart.map((item, index) => {
+    return `
+      <article class="summary-item">
+        <div>
+          <h3>${item.name}</h3>
+          <p>${item.sizeLabel}</p>
+          <div class="summary-item-footer">
+            <div class="qty">
+              <button class="mini" type="button" data-action="decrement" data-index="${index}">-</button>
+              <strong>${item.qty}</strong>
+              <button class="mini" type="button" data-action="increment" data-index="${index}">+</button>
+            </div>
+            <strong>${formatCurrency(item.price * item.qty)}</strong>
+          </div>
+          <div style="margin-top:10px;">
+            <button class="link-button" type="button" data-action="remove" data-index="${index}">Remove</button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function changeCartQty(index, amount){
+  const item = cart[index];
+  if(!item){
+    return;
+  }
+
+  item.qty += amount;
+
+  if(item.qty <= 0){
+    cart.splice(index, 1);
+  }
+
+  saveCart();
+  renderSummary();
+}
+
+function removeCartItem(index){
+  cart.splice(index, 1);
+  saveCart();
+  renderSummary();
+}
+
+function hideMessages(){
+  errorBox.style.display = "none";
+  successBox.style.display = "none";
+}
+
+function showError(message){
+  errorBox.textContent = message;
+  errorBox.style.display = "block";
+  successBox.style.display = "none";
+}
+
+function showSuccess(message){
+  successBox.textContent = message;
+  successBox.style.display = "block";
+  errorBox.style.display = "none";
+}
+
+function prefillCustomerDetails(){
+  const customer = loadCustomerDetails();
+  Object.keys(customer).forEach((key) => {
+    const field = document.getElementById(key);
+    if(field){
+      field.value = customer[key];
+    }
+  });
+}
+
+function collectFormDetails(){
+  const details = {
+    fullName: document.getElementById("fullName").value.trim(),
+    phone: document.getElementById("phone").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    city: document.getElementById("city").value.trim(),
+    state: document.getElementById("state").value.trim(),
+    pincode: document.getElementById("pincode").value.trim(),
+    address: document.getElementById("address").value.trim(),
+    notes: document.getElementById("notes").value.trim()
+  };
+
+  saveCustomerDetails(details);
+  return details;
+}
+
+function buildWhatsAppMessage(order){
+  const lines = [
+    "Order from Spoorthi Home Foods",
+    "",
+    "Order ID: " + order.id,
+    "Items:"
+  ];
+
+  order.items.forEach((item) => {
+    lines.push("- " + item.name + " (" + item.sizeLabel + ") x " + item.qty + " = " + formatCurrency(item.price * item.qty));
+  });
+
+  lines.push("");
+  lines.push("Subtotal: " + formatCurrency(order.totals.subtotal));
+  lines.push("Total: " + formatCurrency(order.totals.total));
+  lines.push("");
+  lines.push("Customer: " + order.customer.fullName);
+  lines.push("Phone: " + order.customer.phone);
+  lines.push("Address: " + order.customer.address + ", " + order.customer.city + ", " + order.customer.state + " - " + order.customer.pincode);
+  lines.push("Delivery: " + order.deliverySlot);
+
+  if(order.customer.notes){
+    lines.push("Notes: " + order.customer.notes);
+  }
+
+  return lines.join("\n");
+}
+
+function buildWhatsAppUrl(message){
+  return "https://wa.me/" + businessPhone + "?text=" + encodeURIComponent(message);
+}
+
+function renderConfirmation(order){
+  document.getElementById("confirmationOrderId").textContent = order.id;
+  document.getElementById("confirmationOrderTotal").textContent = formatCurrency(order.totals.total);
+  document.getElementById("confirmationDelivery").textContent = order.deliverySlot;
+  document.getElementById("confirmationText").textContent =
+    "Your order was stored successfully. Use WhatsApp if you want to send the order details instantly as well.";
+  document.getElementById("whatsAppLink").href = buildWhatsAppUrl(lastOrderMessage);
+  confirmationSection.style.display = "block";
+}
+
+function placeOrder(event){
+  event.preventDefault();
+  hideMessages();
+
+  if(cart.length === 0){
+    showError("Your cart is empty. Add products before placing an order.");
+    return;
+  }
+
+  if(!checkoutForm.checkValidity()){
+    checkoutForm.reportValidity();
+    return;
+  }
+
+  if(!document.getElementById("terms").checked){
+    showError("Please confirm that your address and phone number are correct.");
+    return;
+  }
+
+  const customer = collectFormDetails();
+  const deliverySlot = "Delivery timing will be confirmed";
+  const totals = getTotals();
+  const orderId = "SPF" + Date.now().toString().slice(-8);
+
+  const order = {
+    id: orderId,
+    createdAt: new Date().toLocaleString("en-IN"),
+    customer,
+    deliverySlot,
+    items: cart.map((item) => ({ ...item })),
+    totals
+  };
+
+  const existingOrders = JSON.parse(localStorage.getItem(orderStorageKey) || "[]");
+  existingOrders.unshift(order);
+  localStorage.setItem(orderStorageKey, JSON.stringify(existingOrders));
+  localStorage.setItem(latestOrderKey, JSON.stringify(order));
+
+  lastOrderMessage = buildWhatsAppMessage(order);
+
+  cart = [];
+  saveCart();
+  renderSummary();
+  renderConfirmation(order);
+  showSuccess("Order placed successfully. Your confirmation details are ready below.");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  const popup = window.open(buildWhatsAppUrl(lastOrderMessage), "_blank");
+  if(!popup){
+    showSuccess("Order placed successfully. If WhatsApp did not open automatically, use the confirmation button below.");
+  }
+}
+
+function setupEvents(){
+  summaryList.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if(!button){
+      return;
+    }
+
+    const index = Number(button.dataset.index);
+    const action = button.dataset.action;
+
+    if(action === "increment"){
+      changeCartQty(index, 1);
+      return;
+    }
+
+    if(action === "decrement"){
+      changeCartQty(index, -1);
+      return;
+    }
+
+    if(action === "remove"){
+      removeCartItem(index);
+    }
+  });
+
+  checkoutForm.addEventListener("submit", placeOrder);
+  checkoutForm.addEventListener("input", hideMessages);
+}
+
+prefillCustomerDetails();
+renderSummary();
+setupEvents();
+</script>
+</body>
+</html>
