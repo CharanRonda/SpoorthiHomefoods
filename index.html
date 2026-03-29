@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spoorthi Home Foods | Homemade Taste, Modern Shopping</title>
+<style>
+:root{
+  --bg:#f7efe6;
+  --card:#fffaf5;
+  --surface:rgba(255,255,255,0.88);
+  --surface-strong:#ffffff;
+  --ink:#2f1c10;
+  --muted:#6d5748;
+  --line:rgba(73,42,24,0.12);
+  --brand:#9c3d20;
+  --brand-deep:#6d2110;
+  --accent:#edb54a;
+  --accent-soft:#fff1cf;
+  --success:#24754a;
+  --warning:#d9822b;
+  --shadow:0 24px 60px rgba(70,37,19,0.12);
+  --shadow-soft:0 12px 30px rgba(70,37,19,0.08);
+  --radius-xl:28px;
+  --radius-lg:22px;
+  --radius-md:16px;
+  --radius-sm:12px;
+  --max-width:1180px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:"Trebuchet MS","Segoe UI",sans-serif;
+  color:var(--ink);
+  background:
+    linear-gradient(180deg, rgba(247,239,230,0.95), rgba(250,245,237,0.98)),
+    url("back.jpg") center/cover fixed;
+}
+
+body.cart-open{
+  overflow:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+img{
+  display:block;
+  width:100%;
+}
+
+.site-shell{
+  position:relative;
+  overflow:hidden;
+}
+
+.site-shell::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at top left, rgba(237,181,74,0.18), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(156,61,32,0.16), transparent 34%);
+}
+
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:30;
+  backdrop-filter:blur(16px);
+  background:rgba(255,248,241,0.84);
+  border-bottom:1px solid rgba(73,42,24,0.08);
+}
+
+.nav{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.brand{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.brand strong{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.35rem;
+  letter-spacing:0.02em;
+}
+
+.brand span{
+  color:var(--muted);
+  font-size:0.88rem;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  color:var(--muted);
+  font-weight:600;
+}
+
+.nav-links a:hover{
+  color:var(--brand);
+}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:999px;
+  border:1px solid rgba(156,61,32,0.14);
+  background:rgba(255,255,255,0.75);
+  color:var(--brand);
+  font-weight:700;
+}
+
+.cart-toggle{
+  border:none;
+  cursor:pointer;
+  box-shadow:var(--shadow-soft);
+}
+
+.hero{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:48px 20px 24px;
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(320px,0.85fr);
+  gap:26px;
+}
+
+.hero-copy,
+.hero-panel{
+  background:var(--surface);
+  border:1px solid rgba(255,255,255,0.55);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow);
+}
+
+.hero-copy{
+  padding:42px;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 16px;
+  border-radius:999px;
+  background:var(--accent-soft);
+  color:var(--brand-deep);
+  font-weight:700;
+  letter-spacing:0.02em;
+}
+
+.hero-copy h1{
+  margin:18px 0 14px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(2.4rem,4vw,4.3rem);
+  line-height:1.04;
+}
+
+.hero-copy p{
+  margin:0;
+  max-width:640px;
+  font-size:1.07rem;
+  line-height:1.75;
+  color:var(--muted);
+}
+
+.hero-actions{
+  margin-top:28px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+}
+
+.button{
+  border:none;
+  border-radius:999px;
+  padding:14px 22px;
+  cursor:pointer;
+  font-weight:800;
+  transition:transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.button:hover{
+  transform:translateY(-1px);
+}
+
+.button-primary{
+  background:linear-gradient(135deg, var(--brand), var(--brand-deep));
+  color:#fff;
+  box-shadow:0 18px 35px rgba(109,33,16,0.24);
+}
+
+.button-secondary{
+  background:#fff;
+  color:var(--ink);
+  border:1px solid rgba(73,42,24,0.12);
+}
+
+.hero-trust{
+  margin-top:26px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+
+.trust-item{
+  background:rgba(255,255,255,0.7);
+  border:1px solid rgba(73,42,24,0.08);
+  border-radius:18px;
+  padding:16px;
+}
+
+.trust-item strong{
+  display:block;
+  margin-bottom:6px;
+  font-size:1.05rem;
+}
+
+.trust-item span{
+  color:var(--muted);
+  font-size:0.94rem;
+  line-height:1.5;
+}
+
+.hero-panel{
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.hero-panel-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:14px;
+}
+
+.hero-panel-top h2{
+  margin:0;
+  font-size:1.3rem;
+}
+
+.hero-panel-top p{
+  margin:6px 0 0;
+  color:var(--muted);
+  line-height:1.55;
+}
+
+.price-badge{
+  min-width:120px;
+  padding:12px 14px;
+  border-radius:18px;
+  background:linear-gradient(135deg, rgba(237,181,74,0.24), rgba(255,255,255,0.9));
+  text-align:center;
+}
+
+.price-badge span{
+  display:block;
+  color:var(--muted);
+  font-size:0.85rem;
+}
+
+.price-badge strong{
+  font-size:1.4rem;
+}
+
+.special-list{
+  display:grid;
+  gap:14px;
+}
+
+.special-item{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  padding:14px;
+  border-radius:20px;
+  background:#fff;
+  border:1px solid rgba(73,42,24,0.08);
+}
+
+.special-thumb{
+  width:78px;
+  height:78px;
+  border-radius:18px;
+  overflow:hidden;
+  flex-shrink:0;
+}
+
+.special-thumb img{
+  height:100%;
+  object-fit:cover;
+}
+
+.special-item h3{
+  margin:0 0 6px;
+  font-size:1rem;
+}
+
+.special-item p{
+  margin:0;
+  color:var(--muted);
+  font-size:0.92rem;
+  line-height:1.55;
+}
+
+.special-meta{
+  margin-left:auto;
+  text-align:right;
+}
+
+.special-meta strong{
+  display:block;
+  font-size:1.04rem;
+}
+
+.special-meta span{
+  color:var(--success);
+  font-size:0.86rem;
+  font-weight:700;
+}
+
+.section-wrap{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:20px;
+}
+
+.shop-shell{
+  padding-top:18px;
+}
+
+.section-heading{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-end;
+  margin-bottom:20px;
+}
+
+.section-heading h2{
+  margin:0;
+  font-size:2rem;
+  font-family:Georgia,"Times New Roman",serif;
+}
+
+.section-heading p{
+  margin:8px 0 0;
+  color:var(--muted);
+  max-width:620px;
+  line-height:1.7;
+}
+
+.controls-panel{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:16px;
+  padding:20px;
+  background:var(--surface);
+  border-radius:26px;
+  box-shadow:var(--shadow-soft);
+  border:1px solid rgba(73,42,24,0.08);
+}
+
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:#fff;
+  border:1px solid rgba(73,42,24,0.08);
+  border-radius:18px;
+  padding:0 14px;
+}
+
+.search-box input{
+  width:100%;
+  min-height:52px;
+  border:none;
+  outline:none;
+  background:transparent;
+}
+
+.controls-group{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+}
+
+.category-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.category-pill{
+  border:none;
+  border-radius:999px;
+  padding:10px 16px;
+  background:#fff;
+  color:var(--muted);
+  cursor:pointer;
+  border:1px solid rgba(73,42,24,0.08);
+  font-weight:700;
+}
+
+.category-pill.active{
+  background:var(--brand);
+  color:#fff;
+  border-color:transparent;
+}
+
+.sort-select{
+  min-height:52px;
+  padding:0 18px;
+  border-radius:18px;
+  border:1px solid rgba(73,42,24,0.08);
+  background:#fff;
+  color:var(--ink);
+}
+
+.products-grid{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;
+}
+
+.product-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  background:var(--surface);
+  border-radius:26px;
+  overflow:hidden;
+  box-shadow:var(--shadow-soft);
+  border:1px solid rgba(73,42,24,0.08);
+}
+
+.product-media{
+  position:relative;
+  height:250px;
+  overflow:hidden;
+  border-bottom:1px solid rgba(73,42,24,0.08);
+  background:linear-gradient(135deg, #f7ead8, #efe0d2);
+}
+
+.product-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transition:transform 0.4s ease;
+}
+
+.product-card:hover .product-media img{
+  transform:scale(1.05);
+}
+
+.product-badge{
+  position:absolute;
+  top:16px;
+  left:16px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.9);
+  color:var(--brand-deep);
+  font-size:0.82rem;
+  font-weight:800;
+}
+
+.product-body{
+  display:flex;
+  flex:1;
+  flex-direction:column;
+  gap:16px;
+  padding:20px;
+}
+
+.product-top{
+  display:grid;
+  gap:12px;
+}
+
+.product-title{
+  margin:0 0 8px;
+  font-size:1.25rem;
+}
+
+.product-category{
+  color:var(--brand);
+  font-size:0.82rem;
+  font-weight:800;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+}
+
+.product-desc{
+  margin:0;
+  color:var(--muted);
+  line-height:1.65;
+  font-size:0.95rem;
+}
+
+.size-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.size-chip{
+  flex:1 1 96px;
+  border-radius:16px;
+  border:1px solid rgba(73,42,24,0.1);
+  background:#fff;
+  padding:12px;
+  cursor:pointer;
+  text-align:left;
+  min-width:92px;
+}
+
+.size-chip.active{
+  border-color:var(--brand);
+  background:#fff3ef;
+  box-shadow:inset 0 0 0 1px rgba(156,61,32,0.12);
+}
+
+.size-chip strong{
+  display:block;
+  margin-bottom:4px;
+}
+
+.size-chip span{
+  color:var(--muted);
+  font-size:0.84rem;
+}
+
+.product-footer{
+  margin-top:auto;
+  display:grid;
+  gap:14px;
+}
+
+.price-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-end;
+}
+
+.price-row strong{
+  font-size:1.5rem;
+}
+
+.price-row span{
+  color:var(--muted);
+  font-size:0.92rem;
+}
+
+.cart-actions{
+  display:flex;
+  gap:12px;
+}
+
+.qty-control{
+  display:inline-flex;
+  align-items:center;
+  background:#fff;
+  border-radius:999px;
+  border:1px solid rgba(73,42,24,0.1);
+  overflow:hidden;
+}
+
+.qty-control button{
+  width:40px;
+  height:44px;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  font-size:1.2rem;
+  color:var(--brand-deep);
+}
+
+.qty-control span{
+  min-width:34px;
+  text-align:center;
+  font-weight:800;
+}
+
+.add-button{
+  flex:1;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(135deg, var(--brand), var(--brand-deep));
+  color:#fff;
+  cursor:pointer;
+  font-weight:800;
+}
+
+.empty-state{
+  padding:30px;
+  background:var(--surface);
+  border-radius:24px;
+  text-align:center;
+  color:var(--muted);
+  border:1px solid rgba(73,42,24,0.08);
+}
+
+.story-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+
+.story-card{
+  padding:26px;
+  border-radius:26px;
+  background:var(--surface);
+  box-shadow:var(--shadow-soft);
+  border:1px solid rgba(73,42,24,0.08);
+}
+
+.story-card h3{
+  margin:0 0 10px;
+  font-size:1.18rem;
+}
+
+.story-card p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.testimonial-shell{
+  display:grid;
+  grid-template-columns:1.05fr 0.95fr;
+  gap:20px;
+}
+
+.testimonial-card,
+.cta-panel{
+  background:var(--surface);
+  border-radius:28px;
+  border:1px solid rgba(73,42,24,0.08);
+  box-shadow:var(--shadow-soft);
+}
+
+.testimonial-card{
+  padding:32px;
+}
+
+.testimonial-card h3,
+.cta-panel h3{
+  margin:0 0 12px;
+  font-size:1.5rem;
+}
+
+.testimonial-card blockquote{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.35rem;
+  line-height:1.55;
+}
+
+.testimonial-card footer{
+  margin-top:20px;
+  color:var(--muted);
+}
+
+.review-grid{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+
+.review-pill{
+  padding:16px;
+  border-radius:20px;
+  background:#fff;
+  border:1px solid rgba(73,42,24,0.08);
+}
+
+.review-pill strong{
+  display:block;
+  margin-bottom:6px;
+}
+
+.review-pill span{
+  color:var(--muted);
+  font-size:0.92rem;
+  line-height:1.55;
+}
+
+.cta-panel{
+  padding:32px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.cta-list{
+  display:grid;
+  gap:12px;
+}
+
+.cta-item{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:16px 18px;
+  border-radius:20px;
+  background:#fff;
+  border:1px solid rgba(73,42,24,0.08);
+}
+
+.cta-item strong{
+  display:block;
+}
+
+.cta-item span{
+  color:var(--muted);
+  font-size:0.92rem;
+}
+
+.site-footer{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:0 20px 42px;
+}
+
+.footer-shell{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:center;
+  padding:22px 26px;
+  border-radius:24px;
+  background:rgba(78,37,20,0.92);
+  color:#fff7f1;
+}
+
+.footer-shell p{
+  margin:6px 0 0;
+  color:rgba(255,247,241,0.75);
+}
+
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.footer-links a{
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.1);
+}
+
+.cart-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(35,20,11,0.45);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 0.25s ease, visibility 0.25s ease;
+  z-index:38;
+}
+
+.cart-backdrop.visible{
+  opacity:1;
+  visibility:visible;
+}
+
+.cart-drawer{
+  position:fixed;
+  top:0;
+  right:0;
+  width:min(420px,100%);
+  height:100vh;
+  padding:24px;
+  background:rgba(255,249,243,0.98);
+  backdrop-filter:blur(14px);
+  transform:translateX(100%);
+  transition:transform 0.28s ease;
+  z-index:39;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  box-shadow:-24px 0 60px rgba(35,20,11,0.18);
+}
+
+.cart-drawer.open{
+  transform:translateX(0);
+}
+
+.cart-header{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  align-items:flex-start;
+}
+
+.cart-header h2{
+  margin:0;
+  font-size:1.5rem;
+}
+
+.cart-header p{
+  margin:8px 0 0;
+  color:var(--muted);
+}
+
+.icon-button{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:14px;
+  background:#fff;
+  cursor:pointer;
+  box-shadow:var(--shadow-soft);
+}
+
+.cart-items{
+  flex:1;
+  overflow:auto;
+  display:grid;
+  align-content:start;
+  gap:12px;
+}
+
+.cart-item{
+  padding:14px;
+  background:#fff;
+  border-radius:20px;
+  border:1px solid rgba(73,42,24,0.08);
+}
+
+.cart-item h3{
+  margin:0 0 4px;
+  font-size:1rem;
+}
+
+.cart-item p{
+  margin:0;
+  color:var(--muted);
+  font-size:0.92rem;
+}
+
+.cart-item-meta{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  margin-top:12px;
+}
+
+.cart-mini-controls{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+
+.mini-button{
+  width:28px;
+  height:28px;
+  border:none;
+  border-radius:10px;
+  background:#f8ebdf;
+  color:var(--brand-deep);
+  cursor:pointer;
+  font-weight:800;
+}
+
+.link-button{
+  border:none;
+  background:none;
+  padding:0;
+  color:var(--brand);
+  cursor:pointer;
+  font-weight:700;
+}
+
+.cart-summary{
+  display:grid;
+  gap:10px;
+  padding:18px;
+  border-radius:22px;
+  background:#fff;
+  border:1px solid rgba(73,42,24,0.08);
+}
+
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  color:var(--muted);
+}
+
+.summary-row.total{
+  padding-top:10px;
+  margin-top:4px;
+  border-top:1px solid rgba(73,42,24,0.08);
+  color:var(--ink);
+  font-size:1.08rem;
+  font-weight:800;
+}
+
+.cart-footer{
+  display:grid;
+  gap:10px;
+}
+
+.checkout-button{
+  width:100%;
+  border:none;
+  border-radius:18px;
+  padding:15px 18px;
+  background:linear-gradient(135deg, var(--success), #1e5e3b);
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.checkout-button:disabled{
+  opacity:0.55;
+  cursor:not-allowed;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:26px;
+  transform:translate(-50%, 120px);
+  padding:14px 18px;
+  border-radius:999px;
+  background:rgba(47,28,16,0.92);
+  color:#fff;
+  font-weight:700;
+  box-shadow:var(--shadow);
+  transition:transform 0.25s ease;
+  z-index:60;
+}
+
+.toast.visible{
+  transform:translate(-50%, 0);
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.revealed{
+  opacity:1;
+  transform:translateY(0);
+}
+
+@media (max-width:1080px){
+  .hero,
+  .testimonial-shell{
+    grid-template-columns:1fr;
+  }
+
+  .story-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .products-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width:780px){
+  .nav{
+    flex-wrap:wrap;
+  }
+
+  .nav-links{
+    order:3;
+    width:100%;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  .hero-copy{
+    padding:30px 24px;
+  }
+
+  .hero-trust,
+  .story-grid,
+  .review-grid,
+  .products-grid{
+    grid-template-columns:1fr;
+  }
+
+  .controls-panel,
+  .section-heading,
+  .footer-shell{
+    grid-template-columns:1fr;
+    display:grid;
+  }
+
+  .controls-group{
+    justify-content:flex-start;
+  }
+}
+
+@media (max-width:560px){
+  .section-wrap,
+  .site-footer{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .nav{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .hero{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .hero-copy h1{
+    font-size:2.3rem;
+  }
+
+  .special-item{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .special-meta{
+    margin-left:0;
+    text-align:left;
+  }
+
+  .cart-drawer{
+    padding:18px 16px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="site-shell">
+  <header class="site-header">
+    <div class="nav">
+      <a class="brand" href="#home" aria-label="Spoorthi Home Foods home">
+        <strong>Spoorthi Home Foods</strong>
+        <span>Freshly packed homemade staples</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#shop">Shop</a>
+        <a href="#story">Our Promise</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="pill" href="checkout.html">Checkout</a>
+        <button class="pill cart-toggle" id="cartToggle" type="button">
+          Cart <span id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero reveal" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow">Homemade flavours. Trusted quality. Easy ordering.</div>
+        <h1>Traditional kitchen favourites, now packed like a modern store.</h1>
+        <p>
+          Spoorthi Home Foods brings together slow-made ghee, bold Andhra masalas, and pantry staples
+          with a smoother shopping experience, cart saving, and a dedicated checkout flow.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#shop">Shop Bestsellers</a>
+          <button class="button button-secondary" id="heroCartButton" type="button">View Cart</button>
+        </div>
+
+        <div class="hero-trust">
+          <div class="trust-item">
+            <strong>Small batch packed</strong>
+            <span>Made in focused batches so freshness stays front and centre.</span>
+          </div>
+          <div class="trust-item">
+            <strong>Pure ingredients</strong>
+            <span>No confusing labels, just straightforward ingredients and rich taste.</span>
+          </div>
+          <div class="trust-item">
+            <strong>Fast order handoff</strong>
+            <span>Your cart flows into a clean checkout and order confirmation.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="hero-panel-top">
+          <div>
+            <h2>Today's kitchen-ready picks</h2>
+            <p>Start with the core essentials customers reorder the most.</p>
+          </div>
+          <div class="price-badge">
+            <span>Orders from</span>
+            <strong id="heroStartingPrice">Rs. 0</strong>
+          </div>
+        </div>
+
+        <div class="special-list" id="specialList"></div>
+      </div>
+    </section>
+
+    <section class="section-wrap shop-shell reveal" id="shop">
+      <div class="section-heading">
+        <div>
+          <h2>Shop Spoorthi favourites</h2>
+          <p>Pick your size, adjust quantity, filter by category, and move straight into checkout whenever you are ready.</p>
+        </div>
+      </div>
+
+      <div class="controls-panel">
+        <label class="search-box" for="searchInput">
+          <span>Search</span>
+          <input id="searchInput" type="search" placeholder="Find ghee, kaaram, combos...">
+        </label>
+
+        <div class="controls-group">
+          <div class="category-pills" id="categoryPills"></div>
+          <select class="sort-select" id="sortSelect" aria-label="Sort products">
+            <option value="featured">Sort: Featured</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="popular">Most Popular</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="products-grid" id="productsGrid"></div>
+    </section>
+
+    <section class="section-wrap reveal" id="story">
+      <div class="section-heading">
+        <div>
+          <h2>Built like a real storefront, rooted in homemade trust</h2>
+          <p>The new site keeps your personal brand warmth while adding the pieces customers expect from an e-commerce experience.</p>
+        </div>
+      </div>
+
+      <div class="story-grid">
+        <article class="story-card">
+          <h3>Clear product choices</h3>
+          <p>Each product now supports size selection, quantity controls, searchable browsing, and price updates before anything reaches the cart.</p>
+        </article>
+        <article class="story-card">
+          <h3>Persistent shopping cart</h3>
+          <p>Visitors can add items, close the site, and come back later without losing their basket because the cart is stored locally in the browser.</p>
+        </article>
+        <article class="story-card">
+          <h3>Structured checkout handoff</h3>
+          <p>Instead of a simple link out, customers move through a proper checkout page with editable order details, delivery inputs, and confirmation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-wrap reveal" id="reviews">
+      <div class="testimonial-shell">
+        <div class="testimonial-card">
+          <h3>What customers love</h3>
+          <blockquote>
+            "The ghee tastes fresh, the spice mixes feel homemade, and the new cart + checkout flow makes repeat ordering much easier."
+          </blockquote>
+          <footer>Regular family customer from Hyderabad</footer>
+
+          <div class="review-grid">
+            <div class="review-pill">
+              <strong>Fresh packing</strong>
+              <span>Products feel newly prepared, not shelf-stale.</span>
+            </div>
+            <div class="review-pill">
+              <strong>Easy repeat buying</strong>
+              <span>Saved carts reduce friction for returning customers.</span>
+            </div>
+            <div class="review-pill">
+              <strong>Simple checkout</strong>
+              <span>Address, payment preference, and order confirmation all in one place.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-panel" id="contact">
+          <div>
+            <h3>Need help before you place an order?</h3>
+            <p style="margin:0;color:var(--muted);line-height:1.75;">
+              Reach out for bulk orders, festive hampers, or quick questions. The site is ready for shopping, and WhatsApp confirmation stays available too.
+            </p>
+          </div>
+
+          <div class="cta-list">
+            <div class="cta-item">
+              <div>
+                <strong>Order support</strong>
+                <span>Phone / WhatsApp</span>
+              </div>
+              <strong>+91 70325 40046<br>+91 95508 53466</strong>
+            </div>
+            <div class="cta-item">
+              <div>
+                <strong>Delivery promise</strong>
+                <span>Freshly packed after confirmation</span>
+              </div>
+              <strong>Carefully prepared</strong>
+            </div>
+            <div class="cta-item">
+              <div>
+                <strong>Checkout flow</strong>
+                <span>Cart, customer details, confirmation</span>
+              </div>
+              <strong>Ready now</strong>
+            </div>
+          </div>
+
+          <div class="hero-actions" style="margin-top:0;">
+            <a class="button button-primary" href="checkout.html">Go to Checkout</a>
+            <button class="button button-secondary" id="ctaCartButton" type="button">Open Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <div>
+        <strong>Spoorthi Home Foods</strong>
+        <p>Homemade pantry essentials with a cleaner online shopping experience.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#reviews">Reviews</a>
+        <a href="checkout.html">Checkout</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div class="cart-backdrop" id="cartBackdrop"></div>
+
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="cart-header">
+    <div>
+      <h2>Your cart</h2>
+      <p>Review items, adjust quantities, and move to checkout when ready.</p>
+    </div>
+    <button class="icon-button" id="closeCartButton" type="button" aria-label="Close cart">X</button>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-summary">
+    <div class="summary-row">
+      <span>Items</span>
+      <strong id="summaryItemsCount">0</strong>
+    </div>
+    <div class="summary-row">
+      <span>Subtotal</span>
+      <strong id="summarySubtotal">Rs. 0</strong>
+    </div>
+    <div class="summary-row total">
+      <span>Total payable</span>
+      <strong id="summaryTotal">Rs. 0</strong>
+    </div>
+  </div>
+
+  <div class="cart-footer">
+    <button class="checkout-button" id="checkoutButton" type="button">Proceed to Checkout</button>
+    <button class="button button-secondary" id="clearCartButton" type="button">Clear Cart</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast">Added to cart</div>
+
+<script>
+const cartStorageKey = "spoorthiHomeFoodsCart";
+const products = [
+  {
+    id: "ghee",
+    name: "Homemade Ghee",
+    category: "Best Sellers",
+    image: "ghee.jpg",
+    badge: "Slow-cooked richness",
+    popularity: 98,
+    description: "Golden, aromatic ghee prepared in small batches for rotis, sweets, rice, and everyday cooking.",
+    sizes: [
+      { label: "250 g", price: 225, note: "Starter jar" },
+      { label: "500 g", price: 450, note: "Most popular" },
+      { label: "1 kg", price: 900, note: "Family stock-up" }
+    ]
+  },
+  {
+    id: "sambar",
+    name: "Sambar Kaaram",
+    category: "Masalas",
+    image: "sambar.jpg",
+    badge: "Balanced everyday spice",
+    popularity: 95,
+    description: "A homestyle blend with depth, warmth, and the familiar kitchen aroma needed for daily sambar and curries.",
+    sizes: [
+      { label: "250 g", price: 130, note: "Daily use pack" },
+      { label: "500 g", price: 250, note: "Value pack" },
+      { label: "1 kg", price: 500, note: "Bulk saver" }
+    ]
+  },
+  {
+    id: "mirchi",
+    name: "Guntur Mirchi Kaaram",
+    category: "Masalas",
+    image: "mirchi.jpg",
+    badge: "Bold Andhra heat",
+    popularity: 93,
+    description: "Bright red chilli blend with signature Guntur sharpness, ideal for fry bases, marinades, and spice lovers.",
+    sizes: [
+      { label: "250 g", price: 120, note: "Try it first" },
+      { label: "500 g", price: 225, note: "Kitchen staple" },
+      { label: "1 kg", price: 450, note: "Best per gram" }
+    ]
+  }
+];
+
+const categories = ["All"].concat(
+  [...new Set(products.map((product) => product.category))]
+);
+
+let selectedCategory = "All";
+let currentSort = "featured";
+let currentSearch = "";
+let cart = loadCart()
+  .filter((item) => item.productId !== "combo")
+  .map((item) => item.productId === "ghee" ? { ...item, name: "Homemade Ghee" } : item);
+const selections = {};
+
+saveCart();
+
+products.forEach((product) => {
+  selections[product.id] = { sizeIndex: 0, qty: 1 };
+});
+
+const productsGrid = document.getElementById("productsGrid");
+const categoryPills = document.getElementById("categoryPills");
+const searchInput = document.getElementById("searchInput");
+const sortSelect = document.getElementById("sortSelect");
+const cartDrawer = document.getElementById("cartDrawer");
+const cartBackdrop = document.getElementById("cartBackdrop");
+const cartItems = document.getElementById("cartItems");
+const toast = document.getElementById("toast");
+
+function formatCurrency(value){
+  return "Rs. " + value.toLocaleString("en-IN");
+}
+
+function loadCart(){
+  try{
+    return JSON.parse(localStorage.getItem(cartStorageKey)) || [];
+  }catch(error){
+    return [];
+  }
+}
+
+function saveCart(){
+  localStorage.setItem(cartStorageKey, JSON.stringify(cart));
+}
+
+function getSelection(productId){
+  return selections[productId];
+}
+
+function getSelectedSize(product){
+  const selection = getSelection(product.id);
+  return product.sizes[selection.sizeIndex] || product.sizes[0];
+}
+
+function getMinimumPrice(){
+  return Math.min(...products.map((product) => product.sizes[0].price));
+}
+
+function getCartTotals(){
+  const itemsCount = cart.reduce((sum, item) => sum + item.qty, 0);
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  return {
+    itemsCount,
+    subtotal,
+    total: subtotal
+  };
+}
+
+function renderSpecials(){
+  const specialList = document.getElementById("specialList");
+  const featured = products.slice(0, 3).map((product) => {
+    return `
+      <article class="special-item">
+        <div class="special-thumb">
+          <img src="${product.image}" alt="${product.name}">
+        </div>
+        <div>
+          <h3>${product.name}</h3>
+          <p>${product.description}</p>
+        </div>
+        <div class="special-meta">
+          <strong>${formatCurrency(product.sizes[0].price)}</strong>
+          <span>Top pick</span>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  specialList.innerHTML = featured;
+  document.getElementById("heroStartingPrice").textContent = formatCurrency(getMinimumPrice());
+}
+
+function renderCategories(){
+  categoryPills.innerHTML = categories.map((category) => {
+    const activeClass = category === selectedCategory ? "active" : "";
+    return `<button class="category-pill ${activeClass}" type="button" data-category="${category}">${category}</button>`;
+  }).join("");
+}
+
+function getFilteredProducts(){
+  const filtered = products.filter((product) => {
+    const haystack = `${product.name} ${product.category} ${product.description}`.toLowerCase();
+    const matchesSearch = haystack.includes(currentSearch.toLowerCase().trim());
+    const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  return filtered.sort((first, second) => {
+    const firstPrice = getSelectedSize(first).price;
+    const secondPrice = getSelectedSize(second).price;
+
+    if(currentSort === "price-low"){
+      return firstPrice - secondPrice;
+    }
+
+    if(currentSort === "price-high"){
+      return secondPrice - firstPrice;
+    }
+
+    return second.popularity - first.popularity;
+  });
+}
+
+function renderProducts(){
+  const visibleProducts = getFilteredProducts();
+
+  if(visibleProducts.length === 0){
+    productsGrid.innerHTML = `
+      <div class="empty-state">
+        <h3 style="margin-top:0;">No products matched your search.</h3>
+        <p>Try a different keyword or switch back to "All" categories.</p>
+      </div>
+    `;
+    return;
+  }
+
+  productsGrid.innerHTML = visibleProducts.map((product) => {
+    const selection = getSelection(product.id);
+    const currentSize = product.sizes[selection.sizeIndex];
+    const sizeMarkup = product.sizes.map((size, index) => {
+      const activeClass = index === selection.sizeIndex ? "active" : "";
+      return `
+        <button class="size-chip ${activeClass}" type="button" data-action="size" data-product-id="${product.id}" data-size-index="${index}">
+          <strong>${size.label}</strong>
+          <span>${formatCurrency(size.price)} - ${size.note}</span>
+        </button>
+      `;
+    }).join("");
+
+    return `
+      <article class="product-card">
+        <div class="product-media">
+          <img src="${product.image}" alt="${product.name}">
+          <div class="product-badge">${product.badge}</div>
+        </div>
+
+        <div class="product-body">
+          <div class="product-top">
+            <div>
+              <div class="product-category">${product.category}</div>
+              <h3 class="product-title">${product.name}</h3>
+              <p class="product-desc">${product.description}</p>
+            </div>
+          </div>
+
+          <div class="size-row">${sizeMarkup}</div>
+
+          <div class="product-footer">
+            <div class="price-row">
+              <div>
+                <strong>${formatCurrency(currentSize.price)}</strong>
+                <span>${currentSize.label} selected</span>
+              </div>
+              <span>${currentSize.note}</span>
+            </div>
+
+            <div class="cart-actions">
+              <div class="qty-control" aria-label="Quantity selector">
+                <button type="button" data-action="decrement" data-product-id="${product.id}">-</button>
+                <span>${selection.qty}</span>
+                <button type="button" data-action="increment" data-product-id="${product.id}">+</button>
+              </div>
+              <button class="add-button" type="button" data-action="add" data-product-id="${product.id}">
+                Add ${selection.qty} to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function openCart(){
+  document.body.classList.add("cart-open");
+  cartDrawer.classList.add("open");
+  cartBackdrop.classList.add("visible");
+}
+
+function closeCart(){
+  document.body.classList.remove("cart-open");
+  cartDrawer.classList.remove("open");
+  cartBackdrop.classList.remove("visible");
+}
+
+function showToast(message){
+  toast.textContent = message;
+  toast.classList.add("visible");
+  window.clearTimeout(showToast.timeoutId);
+  showToast.timeoutId = window.setTimeout(() => {
+    toast.classList.remove("visible");
+  }, 1800);
+}
+
+function addToCart(productId){
+  const product = products.find((item) => item.id === productId);
+  const selection = getSelection(productId);
+  const size = product.sizes[selection.sizeIndex];
+  const existing = cart.find((item) => item.productId === productId && item.sizeLabel === size.label);
+
+  if(existing){
+    existing.qty += selection.qty;
+  }else{
+    cart.push({
+      productId,
+      name: product.name,
+      image: product.image,
+      sizeLabel: size.label,
+      price: size.price,
+      qty: selection.qty
+    });
+  }
+
+  saveCart();
+  renderCart();
+  openCart();
+  showToast(product.name + " added to cart");
+}
+
+function changeProductQty(productId, amount){
+  const selection = getSelection(productId);
+  selection.qty = Math.max(1, selection.qty + amount);
+  renderProducts();
+}
+
+function changeCartQty(index, amount){
+  const item = cart[index];
+  if(!item){
+    return;
+  }
+
+  item.qty += amount;
+
+  if(item.qty <= 0){
+    cart.splice(index, 1);
+  }
+
+  saveCart();
+  renderCart();
+}
+
+function removeCartItem(index){
+  cart.splice(index, 1);
+  saveCart();
+  renderCart();
+}
+
+function clearCart(){
+  cart = [];
+  saveCart();
+  renderCart();
+  showToast("Cart cleared");
+}
+
+function renderCart(){
+  const totals = getCartTotals();
+
+  document.getElementById("cartCount").textContent = totals.itemsCount;
+  document.getElementById("summaryItemsCount").textContent = totals.itemsCount;
+  document.getElementById("summarySubtotal").textContent = formatCurrency(totals.subtotal);
+  document.getElementById("summaryTotal").textContent = formatCurrency(totals.total);
+  document.getElementById("checkoutButton").disabled = cart.length === 0;
+
+  if(cart.length === 0){
+    cartItems.innerHTML = `
+      <div class="empty-state">
+        <h3 style="margin-top:0;">Your cart is empty</h3>
+        <p>Add some Spoorthi favourites and your order summary will appear here.</p>
+      </div>
+    `;
+    return;
+  }
+
+  cartItems.innerHTML = cart.map((item, index) => {
+    return `
+      <article class="cart-item">
+        <div>
+          <h3>${item.name}</h3>
+          <p>${item.sizeLabel}</p>
+          <div class="cart-item-meta">
+            <div class="cart-mini-controls">
+              <button class="mini-button" type="button" data-cart-action="decrement" data-index="${index}">-</button>
+              <strong>${item.qty}</strong>
+              <button class="mini-button" type="button" data-cart-action="increment" data-index="${index}">+</button>
+            </div>
+            <strong>${formatCurrency(item.price * item.qty)}</strong>
+          </div>
+          <div style="margin-top:10px;">
+            <button class="link-button" type="button" data-cart-action="remove" data-index="${index}">Remove</button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function proceedToCheckout(){
+  if(cart.length === 0){
+    showToast("Add at least one product before checkout");
+    return;
+  }
+
+  saveCart();
+  window.location.href = "checkout.html";
+}
+
+function setupEvents(){
+  categoryPills.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-category]");
+    if(!button){
+      return;
+    }
+
+    selectedCategory = button.dataset.category;
+    renderCategories();
+    renderProducts();
+  });
+
+  searchInput.addEventListener("input", (event) => {
+    currentSearch = event.target.value;
+    renderProducts();
+  });
+
+  sortSelect.addEventListener("change", (event) => {
+    currentSort = event.target.value;
+    renderProducts();
+  });
+
+  productsGrid.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if(!button){
+      return;
+    }
+
+    const productId = button.dataset.productId;
+    const action = button.dataset.action;
+
+    if(action === "size"){
+      selections[productId].sizeIndex = Number(button.dataset.sizeIndex);
+      renderProducts();
+      return;
+    }
+
+    if(action === "increment"){
+      changeProductQty(productId, 1);
+      return;
+    }
+
+    if(action === "decrement"){
+      changeProductQty(productId, -1);
+      return;
+    }
+
+    if(action === "add"){
+      addToCart(productId);
+    }
+  });
+
+  cartItems.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if(!button){
+      return;
+    }
+
+    const index = Number(button.dataset.index);
+    const action = button.dataset.cartAction;
+
+    if(action === "increment"){
+      changeCartQty(index, 1);
+      return;
+    }
+
+    if(action === "decrement"){
+      changeCartQty(index, -1);
+      return;
+    }
+
+    if(action === "remove"){
+      removeCartItem(index);
+    }
+  });
+
+  document.getElementById("cartToggle").addEventListener("click", openCart);
+  document.getElementById("heroCartButton").addEventListener("click", openCart);
+  document.getElementById("ctaCartButton").addEventListener("click", openCart);
+  document.getElementById("closeCartButton").addEventListener("click", closeCart);
+  cartBackdrop.addEventListener("click", closeCart);
+  document.getElementById("clearCartButton").addEventListener("click", clearCart);
+  document.getElementById("checkoutButton").addEventListener("click", proceedToCheckout);
+}
+
+function setupRevealAnimations(){
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("revealed");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll(".reveal").forEach((element) => {
+    observer.observe(element);
+  });
+}
+
+renderSpecials();
+renderCategories();
+renderProducts();
+renderCart();
+setupEvents();
+setupRevealAnimations();
+</script>
+</body>
+</html>
